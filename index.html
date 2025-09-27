@@ -8,13 +8,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="icon" href="https://blogger.googleusercontent.com/img/a/AVvXsEhpGLVexj0fNurWL6o_qo29hJGNYg3KRK3yX3A6r2NMMXGM8Wxo3a8UNdd974sUQChPEZlY9UeIWQUdeuLp9CVdSJ4cKusuxphAlz3fI1UDMKcTpizCtUymtipijkVJrTd7XCx086iPEAmZB8u6KlOfhOhCbe-N7wIxbfffz_BdDjkXpssvD9Ep86OH9P_H" type="image/png">
   <style>
-    .gradient-bg { background: linear-gradient(135deg, #6e8efb 0%, #4a6cf7 100%); }
-    .feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04); }
-    .download-btn { transition: all .3s ease; }
-    .download-btn:hover { transform: scale(1.05); }
-    .hero-image { animation: float 6s ease-in-out infinite; }
-    @keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0); } }
-    .badge { display: inline-flex; align-items: center; gap: .5rem; font-size: .875rem; padding: .375rem .625rem; border-radius: .5rem; }
+    .gradient-bg{background:linear-gradient(135deg,#6e8efb 0%,#4a6cf7 100%)}
+    .feature-card:hover{transform:translateY(-5px);box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 10px 10px -5px rgba(0,0,0,.04)}
+    .download-btn{transition:all .3s ease}
+    .download-btn:hover{transform:scale(1.05)}
+    .hero-image{animation:float 6s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-20px)}100%{transform:translateY(0)}}
+    .badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.875rem;padding:.375rem .625rem;border-radius:.5rem}
   </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50">
@@ -60,10 +60,12 @@
             </h1>
             <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
               <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhPIhxAKeMSX1q1pFBqIws2yKttdDVo9CJivTXgcw7yo8Y6rtTqnGlaMBxIW71fmjJTz9ItGlkbX96ZiqNrt0focTMWooCsx6tEz7NmLcJDMyPYhmnNPFsQydaRmiLK8AjFB8xbw_A-Scky_omymD4Yu9sjviL87Ebb2TSJ4SclkoxlWBfGXktlE1e685iM" alt="Feedio Logo" class="inline h-4 w-auto relative -top-1">
-              transforms text and images into stunning videos and photos with Veo2/Veo3, Firefly, ImagenFX, and Whisk. Cloud-powered upscaling and background removal run smoothly on any device.
+              transforms text and images into stunning videos and photos with Veo2/Veo3, Firefly, ImagenFX, Whisk, Runway image-to-video, and Image-to-Vector SVG. Cloud-powered upscaling and background removal run smoothly on any device.
             </p>
             <div class="mt-4 flex flex-wrap gap-2">
               <span class="badge bg-blue-100 text-blue-700"><i class="fa-solid fa-film"></i> Veo2/Veo3 Video</span>
+              <span class="badge bg-sky-100 text-sky-700"><i class="fa-solid fa-clapperboard"></i> Runway Img→Video</span>
+              <span class="badge bg-amber-100 text-amber-700"><i class="fa-solid fa-bezier-curve"></i> Image→Vector SVG</span>
               <span class="badge bg-emerald-100 text-emerald-700"><i class="fa-solid fa-image"></i> Firefly</span>
               <span class="badge bg-violet-100 text-violet-700"><i class="fa-solid fa-bolt"></i> ImagenFX</span>
               <span class="badge bg-pink-100 text-pink-700"><i class="fa-solid fa-wand-magic-sparkles"></i> Whisk</span>
@@ -113,6 +115,34 @@
           <div class="feature-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out">
             <div class="p-5">
               <div class="flex items-center">
+                <div class="flex-shrink-0 bg-sky-100 rounded-md p-3">
+                  <i class="fas fa-clapperboard text-sky-600 text-xl"></i>
+                </div>
+                <div class="ml-5">
+                  <h3 class="text-lg font-medium text-gray-900">Runway Image to Video</h3>
+                </div>
+              </div>
+              <p class="mt-4 text-base text-gray-500">Convert any image into smooth cinematic motion using Runway Img→Video.</p>
+            </div>
+          </div>
+
+          <div class="feature-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out">
+            <div class="p-5">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 bg-amber-100 rounded-md p-3">
+                  <i class="fas fa-bezier-curve text-amber-600 text-xl"></i>
+                </div>
+                <div class="ml-5">
+                  <h3 class="text-lg font-medium text-gray-900">Image to Vector (SVG)</h3>
+                </div>
+              </div>
+              <p class="mt-4 text-base text-gray-500">Turn raster images into clean, scalable SVG vectors with smart tracing.</p>
+            </div>
+          </div>
+
+          <div class="feature-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out">
+            <div class="p-5">
+              <div class="flex items-center">
                 <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
                   <i class="fas fa-image text-blue-600 text-xl"></i>
                 </div>
@@ -141,42 +171,14 @@
           <div class="feature-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out">
             <div class="p-5">
               <div class="flex items-center">
-                <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
-                  <i class="fas fa-magic text-blue-600 text-xl"></i>
+                <div class="flex-shrink-0 bg-pink-100 rounded-md p-3">
+                  <i class="fas fa-magic text-pink-600 text-xl"></i>
                 </div>
                 <div class="ml-5">
                   <h3 class="text-lg font-medium text-gray-900">Prompt Generator</h3>
                 </div>
               </div>
               <p class="mt-4 text-base text-gray-500">Built-in prompt assistant for consistent, high-quality generations.</p>
-            </div>
-          </div>
-
-          <div class="feature-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out">
-            <div class="p-5">
-              <div class="flex items-center">
-                <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
-                  <i class="fas fa-infinity text-blue-600 text-xl"></i>
-                </div>
-                <div class="ml-5">
-                  <h3 class="text-lg font-medium text-gray-900">Unlimited Generation</h3>
-                </div>
-              </div>
-              <p class="mt-4 text-base text-gray-500">Create as many videos and images as you need.</p>
-            </div>
-          </div>
-
-          <div class="feature-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out">
-            <div class="p-5">
-              <div class="flex items-center">
-                <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
-                  <i class="fas fa-window-restore text-blue-600 text-xl"></i>
-                </div>
-                <div class="ml-5">
-                  <h3 class="text-lg font-medium text-gray-900">Batch Processing</h3>
-                </div>
-              </div>
-              <p class="mt-4 text-base text-gray-500">Multi-window workflow for maximum productivity.</p>
             </div>
           </div>
 
@@ -277,13 +279,14 @@
                   <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhPIhxAKeMSX1q1pFBqIws2yKttdDVo9CJivTXgcw7yo8Y6rtTqnGlaMBxIW71fmjJTz9ItGlkbX96ZiqNrt0focTMWooCsx6tEz7NmLcJDMyPYhmnNPFsQydaRmiLK8AjFB8xbw_A-Scky_omymD4Yu9sjviL87Ebb2TSJ4SclkoxlWBfGXktlE1e685iM" alt="Feedio Logo" class="inline h-6 w-auto relative -top-1">
                   for Windows
                 </h3>
-                <p class="mt-1 text-gray-600">Version 1.0.8 (Latest)</p>
+                <p class="mt-1 text-gray-600">Version 1.0.9 (Latest)</p>
               </div>
             </div>
             <ul class="mt-6 space-y-4">
               <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Unlimited generation</p></li>
               <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Text to Veo2/Veo3 video generation</p></li>
-              <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Image to Veo2/Veo3 video conversion</p></li>
+              <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Runway image to video conversion</p></li>
+              <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Image to Vector (SVG) conversion</p></li>
               <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Firefly, ImagenFX, Whisk image generation</p></li>
               <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Cloud image upscale on any device</p></li>
               <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Remove background tool</p></li>
@@ -291,7 +294,7 @@
               <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Batch multi-window processing</p></li>
             </ul>
             <div class="mt-8">
-              <a href="https://github.com/inc-okla/Feedio/releases/download/1.0.8/FeedioSetup.exe" class="download-btn w-full flex items-center justify-center px-8 py-4 text-base font-medium rounded-md text-white gradient-bg md:text-lg"><i class="fas fa-download mr-2"></i> Free Download (64-bit)</a>
+              <a href="https://github.com/inc-okla/Feedio/releases/download/1.0.9/FeedioSetup.exe" class="download-btn w-full flex items-center justify-center px-8 py-4 text-base font-medium rounded-md text-white gradient-bg md:text-lg"><i class="fas fa-download mr-2"></i> Free Download (64-bit)</a>
               <p class="mt-2 text-center text-sm text-gray-600">Windows 10/11 (64-bit) required. 4GB RAM minimum, 8GB recommended.</p>
             </div>
           </div>
@@ -313,7 +316,8 @@
             <ul class="mt-6 space-y-4">
               <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Unlimited generation</p></li>
               <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Text to Veo2/Veo3 video generation</p></li>
-              <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Image to Veo2/Veo3 video conversion</p></li>
+              <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Runway image to video conversion</p></li>
+              <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Image to Vector (SVG) conversion</p></li>
               <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Firefly, ImagenFX, Whisk image generation</p></li>
               <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Cloud image upscale on any device</p></li>
               <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2"></i><p class="text-gray-700">Remove background tool</p></li>
@@ -358,6 +362,30 @@
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
           <div class="p-6">
             <div class="flex items-center gap-3">
+              <div class="p-3 rounded-md bg-sky-100">
+                <i class="fa-solid fa-clapperboard text-sky-600 text-xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold">Image to Video (Runway)</h3>
+            </div>
+            <p class="mt-3 text-gray-600">Animate a single image into a cinematic short using Runway Img→Video.</p>
+            <a href="#download" class="mt-5 inline-flex items-center px-4 py-2 rounded-md text-white bg-sky-600 hover:bg-sky-700">Open in Feedio</a>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center gap-3">
+              <div class="p-3 rounded-md bg-amber-100">
+                <i class="fa-solid fa-bezier-curve text-amber-600 text-xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold">Image to Vector (SVG)</h3>
+            </div>
+            <p class="mt-3 text-gray-600">Convert PNG/JPG/WebP into crisp, editable SVG for logos and graphics.</p>
+            <a href="#download" class="mt-5 inline-flex items-center px-4 py-2 rounded-md text-white bg-amber-600 hover:bg-amber-700">Open in Feedio</a>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center gap-3">
               <div class="p-3 rounded-md bg-emerald-100">
                 <i class="fa-solid fa-image text-emerald-600 text-xl"></i>
               </div>
@@ -382,18 +410,6 @@
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
           <div class="p-6">
             <div class="flex items-center gap-3">
-              <div class="p-3 rounded-md bg-pink-100">
-                <i class="fa-solid fa-wand-magic-sparkles text-pink-600 text-xl"></i>
-              </div>
-              <h3 class="text-lg font-semibold">Generate with Whisk</h3>
-            </div>
-            <p class="mt-3 text-gray-600">Playful styles with rapid prompt iteration.</p>
-            <a href="#download" class="mt-5 inline-flex items-center px-4 py-2 rounded-md text-white bg-pink-600 hover:bg-pink-700">Open in Feedio</a>
-          </div>
-        </div>
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-          <div class="p-6">
-            <div class="flex items-center gap-3">
               <div class="p-3 rounded-md bg-gray-100">
                 <i class="fa-solid fa-up-right-and-down-left-from-center text-gray-700 text-xl"></i>
               </div>
@@ -413,18 +429,6 @@
             </div>
             <p class="mt-3 text-gray-600">Clean cutouts for products, portraits, and thumbnails.</p>
             <a href="#download" class="mt-5 inline-flex items-center px-4 py-2 rounded-md text-white bg-red-600 hover:bg-red-700">Open in Feedio</a>
-          </div>
-        </div>
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-          <div class="p-6">
-            <div class="flex items-center gap-3">
-              <div class="p-3 rounded-md bg-blue-100">
-                <i class="fa-solid fa-layer-group text-blue-600 text-xl"></i>
-              </div>
-              <h3 class="text-lg font-semibold">Batch Image Jobs</h3>
-            </div>
-            <p class="mt-3 text-gray-600">Queue multiple images for generation, upscale, or background removal.</p>
-            <a href="#download" class="mt-5 inline-flex items-center px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">Open in Feedio</a>
           </div>
         </div>
       </div>
@@ -536,15 +540,7 @@
             <a href="https://github.com/inc-okla/Feedio/releases/download/1.0.8/FeedioSetup.exe" class="block hover:bg-gray-50 px-4 py-2 rounded-md transition">
               <div class="flex justify-between items-center">
                 <p class="text-lg font-medium text-blue-600">Feedio v1.0.8</p>
-                <p class="text-sm text-gray-500">2025</p>
-              </div>
-            </a>
-          </li>
-          <li class="py-4">
-            <a href="https://github.com/inc-okla/Feedio/releases/download/1.0.7/FeedioSetup.exe" class="block hover:bg-gray-50 px-4 py-2 rounded-md transition">
-              <div class="flex justify-between items-center">
-                <p class="text-lg font-medium text-blue-600">Feedio v1.0.7</p>
-                <p class="text-sm text-gray-500">Agustus 01, 2025</p>
+                <p class="text-sm text-gray-500">September 10, 2025</p>
               </div>
             </a>
           </li>
@@ -553,6 +549,14 @@
               <div class="flex justify-between items-center">
                 <p class="text-lg font-medium text-blue-600">Feedio v1.0.6</p>
                 <p class="text-sm text-gray-500">September 09, 2025</p>
+              </div>
+            </a>
+          </li>
+          <li class="py-4">
+            <a href="https://github.com/inc-okla/Feedio/releases/download/1.0.7/FeedioSetup.exe" class="block hover:bg-gray-50 px-4 py-2 rounded-md transition">
+              <div class="flex justify-between items-center">
+                <p class="text-lg font-medium text-blue-600">Feedio v1.0.7</p>
+                <p class="text-sm text-gray-500">Agustus 01, 2025</p>
               </div>
             </a>
           </li>
@@ -572,23 +576,8 @@
               </div>
             </a>
           </li>
-          <li class="py-4">
-            <a href="https://github.com/inc-okla/Feedio/releases/download/1.0.3/FeedioSetup.exe" class="block hover:bg-gray-50 px-4 py-2 rounded-md transition">
-              <div class="flex justify-between items-center">
-                <p class="text-lg font-medium text-blue-600">Feedio v1.0.3</p>
-                <p class="text-sm text-gray-500">August 17, 2025</p>
-              </div>
-            </a>
-          </li>
-          <li class="py-4">
-            <a href="https://github.com/inc-okla/Feedio/releases/download/1.0.2/FeedioSetup.exe" class="block hover:bg-gray-50 px-4 py-2 rounded-md transition">
-              <div class="flex justify-between items-center">
-                <p class="text-lg font-medium text-blue-600">Feedio v1.0.2</p>
-                <p class="text-sm text-gray-500">August 08, 2025</p>
-              </div>
-            </a>
-          </li>
         </ul>
+        <p class="mt-6 text-sm text-gray-500 text-center">Showing the 5 most recent versions.</p>
       </div>
     </div>
   </section>
@@ -664,23 +653,10 @@
   </footer>
 
   <script>
-    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-      anchor.addEventListener('click', function(e) {
-        var target = document.querySelector(this.getAttribute('href'));
-        if (!target) return;
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-    var mobileMenuButton = document.getElementById('mobile-menu-button');
-    var mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener('click', function() {
-        var expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-        mobileMenuButton.setAttribute('aria-expanded', (!expanded).toString());
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor){anchor.addEventListener('click',function(e){var target=document.querySelector(this.getAttribute('href'));if(!target)return;e.preventDefault();target.scrollIntoView({behavior:'smooth'});});});
+    var mobileMenuButton=document.getElementById('mobile-menu-button');
+    var mobileMenu=document.getElementById('mobile-menu');
+    if(mobileMenuButton&&mobileMenu){mobileMenuButton.addEventListener('click',function(){var expanded=mobileMenuButton.getAttribute('aria-expanded')==='true';mobileMenuButton.setAttribute('aria-expanded',(!expanded).toString());mobileMenu.classList.toggle('hidden');});}
   </script>
 </body>
 </html>
