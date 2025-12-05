@@ -1,159 +1,202 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feedio APIs — Privacy Policy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedio APIs | Privacy Policy</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: "Inter", sans-serif;
-        background: #f7f9fc;
-        color: #333;
-    }
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
 
-    /* Header */
-    .header {
-        width: 100%;
-        padding: 60px 20px;
-        background: linear-gradient(135deg, #4F46E5, #6366F1);
-        color: white;
-        text-align: center;
-        box-sizing: border-box;
-    }
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    .header h1 {
-        font-size: 42px;
-        margin-bottom: 10px;
-        font-weight: 700;
-    }
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            DEFAULT: '#6366F1',
+                            50: '#EEF2FF',
+                            100: '#E0E7FF',
+                            600: '#4F46E5',
+                            700: '#4338CA',
+                        },
+                        secondary: {
+                            DEFAULT: '#10B981',
+                            50: '#ECFDF5',
+                            100: '#D1FAE5',
+                            600: '#059669',
+                            700: '#047857',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
 
-    .header p {
-        font-size: 18px;
-        opacity: 0.9;
-    }
+    <!-- Custom Style -->
+    <style>
+        html {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-    /* Card container */
-    .container {
-        max-width: 900px;
-        margin: -40px auto 50px;
-        background: white;
-        padding: 40px;
-        border-radius: 16px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-        box-sizing: border-box;
-    }
+        /* Section fade animation */
+        section {
+            view-timeline-name: --section;
+            view-timeline-axis: block;
+            animation-timeline: --section;
+            animation-name: fadeIn;
+            animation-range: entry 0% cover 20%;
+            animation-fill-mode: both;
+        }
 
-    h2 {
-        font-size: 26px;
-        margin-top: 30px;
-        font-weight: 600;
-        color: #111827;
-    }
-
-    p, li {
-        font-size: 16px;
-        line-height: 1.7;
-        color: #4B5563;
-    }
-
-    ul {
-        padding-left: 20px;
-    }
-
-    /* Footer */
-    .footer {
-        text-align: center;
-        padding: 20px 0 40px;
-        font-size: 14px;
-        color: #6B7280;
-    }
-</style>
-
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
-<body>
 
-<div class="header">
-    <h1>Privacy Policy</h1>
-    <p>Feedio APIs — Browser Extension</p>
-</div>
+<body class="min-h-full bg-gray-50 flex flex-col">
 
-<div class="container">
-    <p><strong>Last updated:</strong> February 2025</p>
+    <!-- HEADER -->
+    <header class="bg-white shadow-sm py-4 sticky top-0 z-30">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="/" class="text-xl font-semibold text-primary-600 flex items-center">
+                <i data-feather="shield" class="mr-2"></i>
+                Feedio APIs
+            </a>
+            <nav class="hidden md:flex space-x-6 text-gray-600">
+                <a href="/" class="hover:text-primary-600">Home</a>
+                <a class="text-primary-600 font-medium">Privacy Policy</a>
+            </nav>
+        </div>
+    </header>
 
-    <p>
-        Feedio APIs (“the Extension”) is a browser tool that helps users generate API structures using AI services. 
-        This Privacy Policy explains how the Extension uses and protects your information.
-    </p>
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 container mx-auto px-4 py-12 max-w-4xl">
 
-    <h2>1. Information We Collect</h2>
-    <p>The Extension does <strong>not</strong> collect or store any personally identifiable information (PII).</p>
-    <p>The only data stored is:</p>
-    <ul>
-        <li>Preferred AI model</li>
-        <li>Previously generated API parameters</li>
-    </ul>
+        <!-- SECTION 1 -->
+        <section class="bg-white rounded-xl shadow-sm p-8 mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
+            <p class="text-gray-500 mb-8">Last updated: February 2025</p>
 
-    <h2>2. How Your Information Is Used</h2>
-    <p>
-        All data is stored locally on your device and is used only to enhance user experience within the extension.
-    </p>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+                Thank you for using <strong>Feedio APIs</strong>, a browser extension designed to help users automate API generation 
+                with AI platforms. We take privacy seriously — which is why our policy is intentionally straightforward:
+                we <span class="text-primary-600 font-medium">do not collect, store, or sell any personal information.</span>
+            </p>
 
-    <h2>3. Host Permissions</h2>
-    <p>The Extension interacts only with the following domains:</p>
-    <ul>
-        <li>https://firefly.adobe.com</li>
-        <li>https://labs.google</li>
-    </ul>
-    <p>
-        These permissions allow the Extension to attach a small script so it can generate API information.  
-        We do <strong>not</strong> collect or read any content from these websites.
-    </p>
+            <div class="flex items-center bg-primary-50 rounded-lg p-4">
+                <i data-feather="info" class="text-primary-600 mr-3"></i>
+                <p class="text-primary-700">
+                    TL;DR: The extension runs entirely on your device. No tracking, no analytics, no personal data collection. Ever.
+                </p>
+            </div>
+        </section>
 
-    <h2>4. External APIs</h2>
-    <p>
-        The Extension may send data to AI services only when the user initiates an API generation request.
-        No information is transmitted automatically.
-    </p>
+        <!-- SECTION 2 -->
+        <section class="bg-white rounded-xl shadow-sm p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">What We Don’t Do</h2>
 
-    <h2>5. No Remote Code</h2>
-    <p>
-        The Extension does not load or run remote JavaScript. All logic is packaged inside the extension files.
-    </p>
+            <div class="space-y-6">
+                <!-- 1 -->
+                <div class="flex items-start">
+                    <div class="bg-secondary-50 p-2 rounded-lg mr-4">
+                        <i data-feather="eye-off" class="text-secondary-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-gray-900">No Data Collection</h3>
+                        <p class="text-gray-600">
+                            Feedio APIs does not collect, log, or track any personally identifiable information. 
+                            All actions performed in the extension stay on your device.
+                        </p>
+                    </div>
+                </div>
 
-    <h2>6. Data Sharing</h2>
-    <p>
-        Feedio APIs does not sell, share, or transmit user data to third parties.
-    </p>
+                <!-- 2 -->
+                <div class="flex items-start">
+                    <div class="bg-secondary-50 p-2 rounded-lg mr-4">
+                        <i data-feather="database" class="text-secondary-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-gray-900">No Persistent Storage</h3>
+                        <p class="text-gray-600">
+                            The extension only stores small local preferences (model selection, last used fields) 
+                            inside <strong>chrome.storage.local</strong>. No external databases are used.
+                        </p>
+                    </div>
+                </div>
 
-    <h2>7. Security</h2>
-    <p>
-        All stored information remains on the user's device and is protected by browser sandboxing.
-    </p>
+                <!-- 3 -->
+                <div class="flex items-start">
+                    <div class="bg-secondary-50 p-2 rounded-lg mr-4">
+                        <i data-feather="dollar-sign" class="text-secondary-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-gray-900">No Monetization</h3>
+                        <p class="text-gray-600">
+                            We do not sell, share, or monetize user data. Our business model does not depend on surveillance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <h2>8. Children's Privacy</h2>
-    <p>
-        The Extension is not designed for children under 13 and does not knowingly collect any data from children.
-    </p>
+        <!-- SECTION 3 -->
+        <section class="bg-white rounded-xl shadow-sm p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">Technical Details</h2>
 
-    <h2>9. Updates to This Policy</h2>
-    <p>
-        We may update this Privacy Policy occasionally. The updated version will always be available on this page.
-    </p>
+            <div class="space-y-6">
 
-    <h2>10. Contact</h2>
-    <p>If you have any questions, contact:</p>
-    <p><strong>support@feedio.pro</strong></p>
-</div>
+                <div>
+                    <h3 class="font-medium text-gray-900 mb-1">Host Permissions</h3>
+                    <p class="text-gray-600">
+                        The extension injects a small script into these sites to read generated AI content:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-600 mt-2">
+                        <li>https://firefly.adobe.com</li>
+                        <li>https://labs.google</li>
+                    </ul>
+                </div>
 
-<div class="footer">
-    © 2025 Feedio APIs. All rights reserved.
-</div>
+                <div>
+                    <h3 class="font-medium text-gray-900 mb-1">Request Processing</h3>
+                    <p class="text-gray-600 mb-3">
+                        All API generation is processed locally or sent directly to the AI provider. No data is stored or cached.
+                    </p>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <code class="text-sm text-gray-700">Chrome Extension → AI Provider → Response → Deleted Immediately</code>
+                    </div>
+                </div>
 
+                <div>
+                    <h3 class="font-medium text-gray-900 mb-1">Cookies & Tracking</h3>
+                    <p class="text-gray-600">
+                        We do not use Google Analytics, tracking pixels, fingerprinting, or advertising cookies.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t py-6 mt-12">
+        <div class="container mx-auto px-4 text-center text-gray-500">
+            <p>© 2025 Feedio APIs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>feather.replace()</script>
 </body>
 </html>
