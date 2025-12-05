@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedio License Transfer</title>
+    <style>
+        :root {
+            --primary: #4285F4;
+            --background: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #202124;
+            --border: #dadce0;
+            --success: #34a853;
+            --error: #ea4335;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Google Sans', Roboto, Arial, sans-serif;
+        }
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            padding: 40px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(66,133,244,0.2);
+        }
+        button {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #3367d6;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            display: none;
+        }
+        .success {
+            background-color: rgba(52,168,83,0.1);
+            color: var(--success);
+            border: 1px solid rgba(52,168,83,0.3);
+            display: block;
+        }
+        .error {
+            background-color: rgba(234,67,53,0.1);
+            color: var(--error);
+            border: 1px solid rgba(234,67,53,0.3);
+            display: block;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 10px 0;
+        }
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(66,133,244,0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            display: inline-block;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Feedio License Transfer</h1>
+        
+        <form id="transferForm">
+            <div class="form-group">
+                <label for="oldId">Current License ID</label>
+                <input type="text" id="oldId" name="oldId" placeholder="Enter your current license ID" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="newId">New License ID</label>
+                <input type="text" id="newId" name="newId" placeholder="Enter your new license ID" required>
+            </div>
+            
+            <div class="loading hidden">
+                <div class="spinner"></div>
+            </div>
+            
+            <div id="statusMessage" class="status"></div>
+            
+            <button type="submit" id="transferBtn">Transfer License</button>
+        </form>
+    </div>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbw7qgvPNeLw7B3HBcmTMN6UmInfgdn9ETt4McnT6p8U1muXtLg_YjfHAoOQCsM_4vlY/exec";
+
+        document.getElementById('transferForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const oldId = document.getElementById('oldId').value.trim();
+            const newId = document.getElementById('newId').value.trim();
+            const statusMessage = document.getElementById('statusMessage');
+            const loading = document.querySelector('.loading');
+            const transferBtn = document.getElementById('transferBtn');
+
+            statusMessage.className = 'status';
+            statusMessage.textContent = '';
+            loading.classList.remove('hidden');
+            transferBtn.disabled = true;
+
+            const res = await fetch(API_URL, {
+                method: "POST",
+                body: JSON.stringify({ oldId, newId })
+            });
+
+            const json = await res.json();
+            loading.classList.add('hidden');
+            transferBtn.disabled = false;
+
+            if (!json.success) {
+                statusMessage.className = 'status error';
+                statusMessage.textContent = json.message;
+                return;
+            }
+
+            statusMessage.className = 'status success';
+            statusMessage.textContent = json.message;
+
+            document.getElementById('transferForm').reset();
+        });
+    </script>
+</body>
+</html>
