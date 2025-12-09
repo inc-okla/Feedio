@@ -14,19 +14,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }).format(number);
   };
   
-   // STATE AWAL: lock semua dulu → Checking...
-  function prepareCheckingState() {
+  function prepareInitialSoldOutState() {
       document.querySelectorAll('.product-card').forEach(card => {
           const btn = card.querySelector('.add-to-cart-btn');
           if (!btn) return;
   
           btn.disabled = true;
           btn.style.pointerEvents = 'none';
-          btn.classList.add('opacity-60', 'cursor-not-allowed', 'bg-gray-300');
           btn.classList.remove('bg-primary', 'bg-secondary');
-          btn.textContent = "Checking...";
+          btn.classList.add('bg-red-500', 'text-white', 'cursor-not-allowed', 'opacity-70');
+          btn.textContent = "Sold Out";
       });
   }
+
   
   // Jika Sold Out
   function disableProduct(productName) {
