@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedio - Product Selection</title>
+    <link rel="icon" href="https://blogger.googleusercontent.com/img/a/AVvXsEhpGLVexj0fNurWL6o_qo29hJGNYg3KRK3yX3A6r2NMMXGM8Wxo3a8UNdd974sUQChPEZlY9UeIWQUdeuLp9CVdSJ4cKusuxphAlz3fI1UDMKcTpizCtUymtipijkVJrTd7XCx086iPEAmZB8u6KlOfhOhCbe-N7wIxbfffz_BdDjkXpssvD9Ep86OH9P_H" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <!-- =============================== -->
+    <!-- MIDTRANS SANDBOX SNAP.JS (WAJIB) -->
+    <!-- =============================== -->
+    <script 
+        src="https://app.sandbox.midtrans.com/snap/snap.js" 
+        data-client-key="SB-Mid-client-eOnYPagNOzbyuYXy">
+    </script>
+    <!-- =============================== -->
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#10B981',
+                        dark: '#111827'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 min-h-screen flex flex-col font-sans">
+    
+    <header class="bg-white shadow-sm py-4 px-6 sticky top-0 z-40">
+        <div class="container mx-auto flex justify-between items-center relative">
+            <a href="#">
+                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhPIhxAKeMSX1q1pFBqIws2yKttdDVo9CJivTXgcw7yo8Y6rtTqnGlaMBxIW71fmjJTz9ItGlkbX96ZiqNrt0focTMWooCsx6tEz7NmLcJDMyPYhmnNPFsQydaRmiLK8AjFB8xbw_A-Scky_omymD4Yu9sjviL87Ebb2TSJ4SclkoxlWBfGXktlE1e685iM" 
+                     alt="Feedio Logo" class="h-8 object-contain">
+            </a>
+
+            <div class="relative">
+                <button id="cart-icon-btn" class="relative p-2 hover:bg-gray-100 rounded-full transition">
+                    <i data-feather="shopping-cart" class="text-gray-600"></i>
+                    <span class="cart-count absolute top-0 right-0 bg-secondary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center transform scale-0 transition-transform duration-200">0</span>
+                </button>
+                
+                <div id="cart-dropdown" class="absolute right-0 mt-4 w-80 bg-white rounded-xl shadow-2xl border border-gray-100 hidden opacity-0 transform translate-y-2 transition-all duration-200 z-50">
+                    <div class="p-4 border-b border-gray-100">
+                        <h4 class="font-semibold text-gray-800">Your Cart</h4>
+                    </div>
+
+                    <div id="cart-dropdown-items" class="max-h-64 overflow-y-auto p-4 space-y-3">
+                        <p class="text-gray-400 text-center text-sm py-4">Your cart is empty</p>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-b-xl">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm text-gray-600">Total:</span>
+                            <span class="font-bold text-primary cart-total-display">Rp 0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2 text-center">Choose Your Package</h1>
+        <p class="text-gray-500 text-center mb-10">Select the best plan that suits your needs</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- PRODUCT 1 -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden product-card hover:shadow-xl transition-shadow duration-300" data-name="Feedio" data-price="120000">
+                <div class="h-48 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                    <span class="text-4xl font-bold text-white">Feedio</span>
+                </div>
+
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h2 class="text-xl font-bold text-gray-800">Feedio</h2>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full font-semibold">Popular</span>
+                    </div>
+
+                    <p class="text-gray-500 text-sm mb-4">
+                        The ultimate feed management solution.
+                    </p>
+
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="text-2xl font-bold text-gray-800">Rp 120.000<span class="text-sm text-gray-400 font-normal">/mo</span></span>
+                        <div class="flex items-center bg-gray-100 rounded-lg p-1">
+                            <button class="quantity-btn decrease w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-white rounded shadow-sm transition">-</button>
+                            <span class="quantity w-8 text-center font-medium text-sm">1</span>
+                            <button class="quantity-btn increase w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-white rounded shadow-sm transition">+</button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="product-details-container overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                            <ul class="text-sm text-gray-600 space-y-2 pb-4 pt-2 border-t border-dashed border-gray-200 mt-2">
+                                <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-secondary mr-2"></i>Flow Ultra</li>
+                                <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-secondary mr-2"></i>Firefly</li>
+                                <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-secondary mr-2"></i>Upscale</li>
+                                <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-secondary mr-2"></i>Remove Background</li>
+                            </ul>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <button class="more-info-btn flex-1 py-2.5 border border-gray-200 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition flex items-center justify-center group">
+                                <span>Details</span>
+                                <i data-feather="chevron-down" class="w-4 h-4 ml-1 transition-transform duration-300 group-[.active]:rotate-180"></i>
+                            </button>
+
+                            <button class="add-to-cart-btn flex-1 py-2.5 bg-primary text-white rounded-xl text-sm font-medium hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================================================== -->
+            <!-- PRODUK 2 DAN 3 TIDAK DIHAPUS (PERSIS DARI KODE ASLI)   -->
+            <!-- ====================================================== -->
+
+            <!-- PRODUCT 2 -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden product-card hover:shadow-xl transition-shadow duration-300" data-name="Google Ultra" data-price="250000">
+                <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                    <span class="text-4xl font-bold text-white">Google Ultra</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h2 class="text-xl font-bold text-gray-800">Google Ultra</h2>
+                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">Premium</span>
+                    </div>
+                    <p class="text-gray-500 text-sm mb-4">Complete premium Google services package.</p>
+                    
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="text-2xl font-bold text-gray-800">Rp 250.000<span class="text-sm text-gray-400 font-normal">/mo</span></span>
+                        <div class="flex items-center bg-gray-100 rounded-lg p-1">
+                            <button class="quantity-btn decrease w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-white rounded shadow-sm transition">-</button>
+                            <span class="quantity w-8 text-center font-medium text-sm">1</span>
+                            <button class="quantity-btn increase w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-white rounded shadow-sm transition">+</button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="product-details-container overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                            <ul class="text-sm text-gray-600 space-y-2 pb-4 pt-2 border-t border-dashed border-gray-200 mt-2">
+                                <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-secondary mr-2"></i>Unlimited Credit Points</li>
+                                <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-secondary mr-2"></i>All Google Ultra Products</li>
+                                <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-secondary mr-2"></i>Exclusive Access</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="flex gap-3">
+                            <button class="more-info-btn flex-1 py-2.5 border border-gray-200 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition flex items-center justify-center group">
+                                <span>Details</span>
+                                <i data-feather="chevron-down" class="w-4 h-4 ml-1 transition-transform duration-300 group-[.active]:rotate-180"></i>
+                            </button>
+                            <button class="add-to-cart-btn flex-1 py-2.5 bg-primary text-white rounded-xl text-sm font-medium hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUCT 3 -->
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden product-card hover:shadow-xl transition-shadow duration-300" data-name="Firefly" data-price="65000">
+                <div class="h-48 bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center">
+                    <span class="text-4xl font-bold text-white">Firefly</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h2 class="text-xl font-bold text-gray-800">Firefly</h2>
+                        <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-semibold">Creative</span>
+                    </div>
+                    <p class="text-gray-500 text-sm mb-4">Lightning-fast creative data processing.</p>
+                    
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="text-2xl font-bold text-gray-800">Rp 65.000<span class="text-sm text-gray-400 font-normal">/mo</span></span>
+                        <div class="flex items-center bg-gray-100 rounded-lg p-1">
+                            <button class="quantity-btn decrease w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-white rounded shadow-sm transition">-</button>
+                            <span class="quantity w-8 text-center font-medium text-sm">1</span>
+                            <button class="quantity-btn increase w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-white rounded shadow-sm transition">+</button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="product-details-container overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                            <ul class="text-sm text-gray-600 space-y-2 pb-4 pt-2 border-t border-dashed border-gray-200 mt-2">
+                                <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-secondary mr-2"></i>Monthly Package</li>
+                                <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-secondary mr-2"></i>4000 Credit Points</li>
+                                <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-secondary mr-2"></i>Unlimited Firefly</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="flex gap-3">
+                            <button class="more-info-btn flex-1 py-2.5 border border-gray-200 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition flex items-center justify-center group">
+                                <span>Details</span>
+                                <i data-feather="chevron-down" class="w-4 h-4 ml-1 transition-transform duration-300 group-[.active]:rotate-180"></i>
+                            </button>
+                            <button class="add-to-cart-btn flex-1 py-2.5 bg-primary text-white rounded-xl text-sm font-medium hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="sticky bottom-0 bg-white/90 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-30">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-8">
+                <div>
+                    <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">Total Items</span>
+                    <span class="total-items block font-bold text-xl text-gray-800">0</span>
+                </div>
+                <div>
+                    <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">Total Price</span>
+                    <span class="total-price block font-bold text-xl text-primary">Rp 0</span>
+                </div>
+            </div>
+
+            <button id="checkout-trigger-btn" class="w-full md:w-auto bg-secondary hover:bg-green-600 text-white px-8 py-3 rounded-xl font-bold transition shadow-lg shadow-green-100 flex items-center justify-center gap-2">
+                <span>Checkout Now</span>
+                <i data-feather="shopping-cart" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ============================== -->
+    <!-- CHECKOUT POPUP / PAYMENT FORM -->
+    <!-- ============================== -->
+
+    <div id="checkout-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-gray-900/60 backdrop-blur-sm transition-opacity" id="modal-backdrop"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-modal-in">
+            
+            <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                    <i data-feather="shopping-bag" class="text-primary w-5 h-5"></i>
+                    Order Summary
+                </h3>
+                <button id="close-checkout" class="text-gray-400 hover:text-gray-700 transition p-1 hover:bg-gray-200 rounded-full">
+                    <i data-feather="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 max-h-[60vh] overflow-y-auto">
+                <div id="checkout-list" class="space-y-4"></div>
+
+                <div class="border-t border-dashed border-gray-300 mt-6 pt-4 space-y-2">
+                    <div class="flex justify-between text-gray-600">
+                        <span>Subtotal</span>
+                        <span id="checkout-subtotal">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between text-gray-600">
+                        <span>Tax (0%)</span>
+                        <span>Rp 0</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-2 mt-2 border-t border-gray-200">
+                        <span class="text-lg font-bold text-gray-800">Total Amount</span>
+                        <span class="text-2xl font-bold text-primary" id="checkout-total">Rp 0</span>
+                    </div>
+                </div>
+
+                <!-- Client Form -->
+                <div class="mt-6 space-y-4">
+                    <input type="text" id="client-name" placeholder="Your Name" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-secondary">
+                    <input type="text" id="client-phone" placeholder="+62 82xxx" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-secondary">
+                    <input type="text" id="client-email" placeholder="youremail@gmail.com" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-secondary">
+                    <input type="text" id="client-id" placeholder="ID Feedio: xxx xxx xxx" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-secondary">
+                </div>
+            </div>
+
+            <div class="p-6 bg-gray-50 border-t border-gray-100">
+                <button id="confirm-payment" disabled class="w-full bg-primary hover:bg-indigo-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-indigo-200 transition flex justify-center items-center gap-2 opacity-50 cursor-not-allowed">
+                    <i data-feather="credit-card" class="w-5 h-5"></i>
+                    Proceed to Payment
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
