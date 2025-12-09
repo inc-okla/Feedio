@@ -13,28 +13,32 @@ document.addEventListener('DOMContentLoaded', function() {
       maximumFractionDigits: 0
     }).format(number);
   };
-
+  
   function disableProduct(productName) {
     const card = document.querySelector('.product-card[data-name="' + productName + '"]');
     if (!card) return;
     const btn = card.querySelector('.add-to-cart-btn');
     if (!btn) return;
     btn.disabled = true;
-    btn.classList.add('opacity-50', 'cursor-not-allowed', 'bg-gray-300');
-    btn.classList.remove('bg-primary');
+    btn.style.pointerEvents = 'none';
+    btn.classList.add('opacity-60', 'cursor-not-allowed', 'bg-gray-300');
+    btn.classList.remove('bg-primary', 'bg-secondary');
     btn.textContent = 'Sold Out';
   }
-
+  
   async function checkStock() {
     try {
-      const res = await fetch(API_URL + '?action=stock');
+      const url = API_URL + '?action=stock&_=' + Date.now();
+      const res = await fetch(url, { cache: 'no-store' });
       if (!res.ok) return;
       const data = await res.json();
       if (!data || !data.success) return;
-
-      const googleStatus = String(data.googleUltraStatus || '').toLowerCase();
-      const fireflyStatus = String(data.fireflyStatus || '').toLowerCase();
-
+  
+      const googleStatus = String(data.googleUltraStatus || '').trim().toLowerCase();
+      const fireflyStatus = String(data.fireflyStatus || '').trim().toLowerCase();
+  
+      console.log('Stock status:', googleStatus, fireflyStatus);
+  
       if (googleStatus === 'sold out') {
         disableProduct('Google Ultra');
       }
