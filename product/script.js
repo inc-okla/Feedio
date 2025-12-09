@@ -15,16 +15,18 @@ document.addEventListener('DOMContentLoaded', function() {
   };
   
   function prepareInitialSoldOutState() {
-      document.querySelectorAll('.product-card').forEach(card => {
-          const btn = card.querySelector('.add-to-cart-btn');
-          if (!btn) return;
+    ["Google Ultra", "Firefly"].forEach(function(productName) {
+      const card = document.querySelector('.product-card[data-name="' + productName + '"]');
+      if (!card) return;
+      const btn = card.querySelector('.add-to-cart-btn');
+      if (!btn) return;
   
-          btn.disabled = true;
-          btn.style.pointerEvents = 'none';
-          btn.classList.remove('bg-primary', 'bg-secondary');
-          btn.classList.add('bg-red-500', 'text-white', 'cursor-not-allowed', 'opacity-70');
-          btn.textContent = "Sold Out";
-      });
+      btn.disabled = true;
+      btn.style.pointerEvents = 'none';
+      btn.classList.remove('bg-primary', 'bg-secondary');
+      btn.classList.add('bg-red-500', 'text-white', 'cursor-not-allowed', 'opacity-70');
+      btn.textContent = "Sold Out";
+    });
   }
 
   
@@ -418,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function() {
       feather.replace();
     }
   });
-  prepareCheckingState();
+  prepareInitialSoldOutState();
   checkStock();
 
 });
