@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+button:active:not(:disabled) {
+    transform: scale(0.96);
+}
+
+.product-details-container.open {
+    max-height: 500px; 
+    opacity: 1;
+}
+
+.cart-count {
+    transform: scale(0);
+}
+
+.cart-count.active {
+    transform: scale(1);
+    animation: bounce 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes bounce {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: translate(-50%, -45%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.animate-modal-in {
+    animation: modalIn 0.3s ease-out forwards;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1; 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; 
+}
+
+.input-error {
+    border-color: #f87171;
+    outline: none;
+}
+
+input {
+    border-color: #d1d5db; 
+    background-color: white;
+}
