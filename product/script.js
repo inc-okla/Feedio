@@ -14,41 +14,76 @@ document.addEventListener('DOMContentLoaded', function() {
     }).format(number);
   };
   
+   // STATE AWAL: lock semua dulu → Checking...
+  function prepareCheckingState() {
+      document.querySelectorAll('.product-card').forEach(card => {
+          const btn = card.querySelector('.add-to-cart-btn');
+          if (!btn) return;
+  
+          btn.disabled = true;
+          btn.style.pointerEvents = 'none';
+          btn.classList.add('opacity-60', 'cursor-not-allowed', 'bg-gray-300');
+          btn.classList.remove('bg-primary', 'bg-secondary');
+          btn.textContent = "Checking...";
+      });
+  }
+  
+  // Jika Sold Out
   function disableProduct(productName) {
-    const card = document.querySelector('.product-card[data-name="' + productName + '"]');
-    if (!card) return;
-    const btn = card.querySelector('.add-to-cart-btn');
-    if (!btn) return;
-    btn.disabled = true;
-    btn.style.pointerEvents = 'none';
-    btn.classList.add('opacity-60', 'cursor-not-allowed', 'bg-gray-300');
-    btn.classList.remove('bg-primary', 'bg-secondary');
-    btn.textContent = 'Sold Out';
+      const card = document.querySelector('.product-card[data-name="' + productName + '"]');
+      if (!card) return;
+      const btn = card.querySelector('.add-to-cart-btn');
+      if (!btn) return;
+  
+      btn.disabled = true;
+      btn.style.pointerEvents = 'none';
+      btn.classList.add('opacity-70', 'cursor-not-allowed');
+      btn.classList.remove('bg-primary', 'bg-secondary');
+      btn.classList.add('bg-red-500');
+      btn.textContent = 'Sold Out';
+  }
+  
+  // Jika Ready
+  function enableProduct(productName) {
+      const card = document.querySelector('.product-card[data-name="' + productName + '"]');
+      if (!card) return;
+      const btn = card.querySelector('.add-to-cart-btn');
+      if (!btn) return;
+  
+      btn.disabled = false;
+      btn.style.pointerEvents = 'auto';
+      btn.classList.remove('opacity-60', 'cursor-not-allowed', 'bg-gray-300', 'bg-red-500');
+      btn.classList.add('bg-primary');
+      btn.textContent = 'Add to Cart';
   }
   
   async function checkStock() {
-    try {
-      const url = API_URL + '?action=stock&_=' + Date.now();
-      const res = await fetch(url, { cache: 'no-store' });
-      if (!res.ok) return;
-      const data = await res.json();
-      if (!data || !data.success) return;
+      try {
+          const url = API_URL + '?action=stock&_=' + Date.now();
+          const res = await fetch(url, { cache: "no-store" });
+          if (!res.ok) return;
   
-      const googleStatus = String(data.googleUltraStatus || '').trim().toLowerCase();
-      const fireflyStatus = String(data.fireflyStatus || '').trim().toLowerCase();
+          const data = await res.json();
+          if (!data || !data.success) return;
   
-      console.log('Stock status:', googleStatus, fireflyStatus);
+          const googleStatus = String(data.googleUltraStatus || '').trim().toLowerCase();
+          const fireflyStatus = String(data.fireflyStatus || '').trim().toLowerCase();
   
-      if (googleStatus === 'sold out') {
-        disableProduct('Google Ultra');
+          console.log("Stock:", googleStatus, fireflyStatus);
+  
+          // Google Ultra
+          if (googleStatus === 'sold out') disableProduct("Google Ultra");
+          else enableProduct("Google Ultra");
+  
+          // Firefly
+          if (fireflyStatus === 'sold out') disableProduct("Firefly");
+          else enableProduct("Firefly");
+  
+      } catch (err) {
+          console.error("Stock check error:", err);
       }
-      if (fireflyStatus === 'sold out') {
-        disableProduct('Firefly');
-      }
-    } catch (err) {
-      console.error('Stock check error', err);
-    }
   }
+
 
   document.querySelectorAll('.quantity-btn').forEach(btn => {
     btn.addEventListener('click', function() {
@@ -383,6 +418,7 @@ document.addEventListener('DOMContentLoaded', function() {
       feather.replace();
     }
   });
-
+  prepareCheckingState();
   checkStock();
+
 });
