@@ -15,26 +15,22 @@
             margin: 0;
             color: #333333;
         }
-
         .container {
             text-align: center;
             width: 100%;
             max-width: 400px;
             padding: 40px;
         }
-
         h2 {
             font-weight: 600;
             margin-bottom: 10px;
             font-size: 24px;
         }
-
         p {
             color: #666666;
             margin-bottom: 30px;
             font-size: 16px;
         }
-
         .action-btn {
             background-color: #000000;
             color: #ffffff;
@@ -46,12 +42,11 @@
             transition: opacity 0.2s;
             font-weight: 500;
             outline: none;
+            display: none;
         }
-
         .action-btn:hover {
             opacity: 0.8;
         }
-
         .loader {
             border: 4px solid #f3f3f3;
             border-top: 4px solid #333333;
@@ -62,19 +57,16 @@
             margin: 0 auto 20px auto;
             display: none;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
         .icon-result {
             width: 60px;
             height: 60px;
             margin: 0 auto 20px auto;
             display: none;
         }
-
         .checkmark {
             width: 60px;
             height: 60px;
@@ -86,7 +78,6 @@
             box-shadow: inset 0px 0px 0px #4bb71b;
             animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
         }
-
         .checkmark__circle {
             stroke-dasharray: 166;
             stroke-dashoffset: 166;
@@ -96,14 +87,12 @@
             fill: none;
             animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
         }
-
         .checkmark__check {
             transform-origin: 50% 50%;
             stroke-dasharray: 48;
             stroke-dashoffset: 48;
             animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
         }
-
         .cross {
             width: 60px;
             height: 60px;
@@ -115,7 +104,6 @@
             box-shadow: inset 0px 0px 0px #d32f2f;
             animation: fill-error .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
         }
-
         .cross__circle {
             stroke-dasharray: 166;
             stroke-dashoffset: 166;
@@ -125,63 +113,50 @@
             fill: none;
             animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
         }
-
         .cross__path {
             transform-origin: 50% 50%;
             stroke-dasharray: 48;
             stroke-dashoffset: 48;
             animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
         }
-
         @keyframes stroke {
             100% { stroke-dashoffset: 0; }
         }
-
         @keyframes scale {
             0%, 100% { transform: none; }
             50% { transform: scale3d(1.1, 1.1, 1); }
         }
-
         @keyframes fill {
             100% { box-shadow: inset 0px 0px 0px 30px #ffffff; }
         }
-        
         @keyframes fill-error {
             100% { box-shadow: inset 0px 0px 0px 30px #ffffff; }
-        }
-
-        .hidden {
-            display: none;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
         <h2 id="main-title">Identity Verification</h2>
-        
         <div id="loader" class="loader"></div>
-        
         <div id="success-icon" class="icon-result">
             <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                 <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
                 <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
             </svg>
         </div>
-
         <div id="fail-icon" class="icon-result">
             <svg class="cross" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                 <circle class="cross__circle" cx="26" cy="26" r="25" fill="none"/>
                 <path class="cross__path" fill="none" d="M16 16 36 36 M36 16 16 36"/>
             </svg>
         </div>
-
-        <p id="status-text">Please click the button below to verify your session.</p>
-        
+        <p id="status-text">Processing your license, please wait...</p>
         <button id="verify-btn" class="action-btn">Verify Now</button>
     </div>
 
     <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbw7qgvPNeLw7B3HBcmTMN6UmInfgdn9ETt4McnT6p8U1muXtLg_YjfHAoOQCsM_4vlY/exec";
+
         const verifyBtn = document.getElementById('verify-btn');
         const loader = document.getElementById('loader');
         const successIcon = document.getElementById('success-icon');
@@ -189,30 +164,67 @@
         const statusText = document.getElementById('status-text');
         const mainTitle = document.getElementById('main-title');
 
-        verifyBtn.addEventListener('click', function() {
-            verifyBtn.style.display = 'none';
-            statusText.innerText = 'Processing your request, please wait...';
-            loader.style.display = 'block';
+        function getParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name) || "";
+        }
 
-            setTimeout(function() {
-                loader.style.display = 'none';
-                
-                const isSuccess = Math.random() < 0.7; 
+        async function startVerification() {
+            const feedioId = getParam("feedioId");
+            const phone = getParam("phone");
+            const name = getParam("name");
+            const orderId = getParam("orderId");
+            const amountParam = getParam("amount");
+            const amount = parseInt(amountParam || "0", 10);
 
-                if (isSuccess) {
-                    successIcon.style.display = 'block';
-                    mainTitle.innerText = 'Verification Successful';
-                    statusText.innerText = 'Your identity has been verified securely.';
+            if (!feedioId || !phone) {
+                mainTitle.innerText = "Verification Failed";
+                statusText.innerText = "Missing required data. Please contact support.";
+                failIcon.style.display = "block";
+                return;
+            }
+
+            loader.style.display = "block";
+            statusText.innerText = "Verifying your license, please wait...";
+
+            try {
+                const res = await fetch(API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        action: "registerPayment",
+                        feedioId: feedioId,
+                        phone: phone,
+                        name: name,
+                        orderId: orderId,
+                        amount: isNaN(amount) ? 0 : amount
+                    })
+                });
+
+                const data = await res.json();
+
+                loader.style.display = "none";
+
+                if (data && data.success) {
+                    successIcon.style.display = "block";
+                    mainTitle.innerText = "Verification Successful";
+                    statusText.innerText = "Your license has been activated.";
                 } else {
-                    failIcon.style.display = 'block';
-                    mainTitle.innerText = 'Verification Failed';
-                    statusText.innerText = 'Unable to verify your session. Please try again.';
-                    
-                    setTimeout(() => {
-                        location.reload();
-                    }, 3000);
+                    failIcon.style.display = "block";
+                    mainTitle.innerText = "Verification Failed";
+                    statusText.innerText = data && data.message ? data.message : "Unable to verify your license. Please try again or contact support.";
                 }
-            }, 2500);
+            } catch (err) {
+                loader.style.display = "none";
+                failIcon.style.display = "block";
+                mainTitle.innerText = "Verification Failed";
+                statusText.innerText = "System error: " + err.toString();
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            verifyBtn.style.display = "none";
+            startVerification();
         });
     </script>
 </body>
