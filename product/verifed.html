@@ -190,7 +190,6 @@
             try {
                 const res = await fetch(API_URL, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         action: "registerPayment",
                         feedioId: feedioId,
@@ -200,6 +199,7 @@
                         amount: isNaN(amount) ? 0 : amount
                     })
                 });
+
 
                 const data = await res.json();
 
@@ -229,3 +229,4 @@
     </script>
 </body>
 </html>
+
