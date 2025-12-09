@@ -310,10 +310,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
             window.snap.pay(data.token, {
                 onSuccess: function(result) {
-                    alert('Payment successful! Thank you for your purchase.');
+                    const params = new URLSearchParams({
+                        feedioId: clientID.value.trim(),
+                        phone: clientPhone.value.trim(),
+                        name: clientName.value.trim(),
+                        orderId: payload.order_id,
+                        amount: payload.gross_amount
+                    });
+                
                     cart = [];
                     updateGlobalState();
                     closeModal();
+                
+                    window.location.href = 'verifed.html?' + params.toString();
                 },
                 onPending: function(result) {
                     alert('Payment pending. Please complete the payment.');
