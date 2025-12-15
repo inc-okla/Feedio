@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dokumentasi Feedio</title>
+    <link rel="icon" href="https://blogger.googleusercontent.com/img/a/AVvXsEhpGLVexj0fNurWL6o_qo29hJGNYg3KRK3yX3A6r2NMMXGM8Wxo3a8UNdd974sUQChPEZlY9UeIWQUdeuLp9CVdSJ4cKusuxphAlz3fI1UDMKcTpizCtUymtipijkVJrTd7XCx086iPEAmZB8u6KlOfhOhCbe-N7wIxbfffz_BdDjkXpssvD9Ep86OH9P_H" type="image/png">
     <style>
         :root {
             --bg-primary: #0f1115;
@@ -313,11 +314,36 @@
             aside { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); }
             main { padding: 2rem; }
         }
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none; 
+            gap: 10px; 
+        }
+
+        .logo-img {
+            height: 25px; 
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color); 
+            letter-spacing: 1px;
+        }
+        
+        .logo-link:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">FEEDIO <span>DOCS</span></div>
+        <a href="https://feedio.pro" class="logo-link">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhhvP6pgETkPNJe2AT6utIKqAKwYYVywCjnLIxC18X-YNMG7qtLFQWoYVuWuegreDfL_GIZyWG-t1ClUHUd_jF1afxWCGPFfRLJaEftDcRlD7o50093ZMambTtgGCjnWpth-nWNqDrIIHcvwC6vT22h1WNHA1W-uetp7pJMAQrzIS_CAC2C7SgYgdYNWR6P" alt="Feedio Logo" class="logo-img">
+            <span class="logo-text">DOCS</span>
+        </a>
     </header>
 
     <div class="container">
