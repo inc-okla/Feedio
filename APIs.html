@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedio APIs - Official Page</title>
+    <link rel="icon" href="https://blogger.googleusercontent.com/img/a/AVvXsEhpGLVexj0fNurWL6o_qo29hJGNYg3KRK3yX3A6r2NMMXGM8Wxo3a8UNdd974sUQChPEZlY9UeIWQUdeuLp9CVdSJ4cKusuxphAlz3fI1UDMKcTpizCtUymtipijkVJrTd7XCx086iPEAmZB8u6KlOfhOhCbe-N7wIxbfffz_BdDjkXpssvD9Ep86OH9P_H" type="image/png">    
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #f8f9fa;
+            --text-dark: #1a1a1a;
+            --text-grey: #555555;
+            --white: #ffffff;
+            --accent-bg: #eef4fb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px 40px;
+            background: var(--white);
+            box-shadow: 0 1px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            width: 100%;
+            padding: 80px 20px 40px 20px;
+            background: linear-gradient(180deg, var(--white) 0%, var(--secondary-color) 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-grey);
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            line-height: 1.6;
+        }
+
+        .download-section {
+            width: 100%;
+            padding: 20px 20px 80px 20px;
+            background: var(--secondary-color);
+        }
+
+        .download-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .download-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #e1e1e1;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .icon-wrapper {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--accent-bg);
+        }
+
+        .icon-wrapper svg {
+            width: 35px;
+            height: 35px;
+            fill: var(--primary-color);
+        }
+
+        .download-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .platform-name {
+            display: block;
+            color: var(--text-grey);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: #e6f7ff;
+            color: #0066cc;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #0052a3;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .desc-text {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .content-section {
+            padding: 80px 40px;
+            background: var(--white);
+        }
+
+        .section-center {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .feature-tag {
+            background: var(--secondary-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid #eee;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .video-section {
+            background: var(--secondary-color);
+            padding: 80px 40px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .video-frame {
+            position: relative;
+            padding-bottom: 56.25%;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .video-frame iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-title {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 700;
+        }
+
+        footer {
+            background: #111;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .grid-split {
+                grid-template-columns: 1fr;
+            }
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none; 
+            gap: 10px; 
+        }
+
+        .logo-img {
+            height: 25px; 
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: black; 
+            letter-spacing: 1px;
+        }
+        
+        .logo-link:hover {
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="https://feedio.pro" class="logo-link">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhPIhxAKeMSX1q1pFBqIws2yKttdDVo9CJivTXgcw7yo8Y6rtTqnGlaMBxIW71fmjJTz9ItGlkbX96ZiqNrt0focTMWooCsx6tEz7NmLcJDMyPYhmnNPFsQydaRmiLK8AjFB8xbw_A-Scky_omymD4Yu9sjviL87Ebb2TSJ4SclkoxlWBfGXktlE1e685iM" alt="Feedio Logo" class="logo-img">
+            <span class="logo-text">APIs</span>
+        </a>
+        <nav class="nav-links">
+            <a href="#downloads">Download</a>
+            <a href="#about">Tentang</a>
+            <a href="#ecosystem">Ekosistem</a>
+            <a href="#demos">Tutorial</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Otomatisasi API Key untuk Microstock</h1>
+        <p>
+            Solusi otomatis penghasil API Key yang menghubungkan kreativitas Anda dengan Feedio Bot. 
+            Mendukung Topaz, Firefly, Flow Ultra, dan Google Image dalam satu sistem yang efisien.
+        </p>
+    </section>
+
+    <section id="downloads" class="download-section">
+        <div class="download-container">
+            <div class="download-card">
+                <div class="icon-wrapper">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
+                    </svg>
+                </div>
+                <h3>Desktop Installer</h3>
+                <span class="platform-name">Windows Only (64-bit)</span>
+                <span id="win-ver" class="version-badge">Mencari versi terbaru...</span>
+                
+                <a id="win-btn" href="https://github.com/inc-okla/Feedio-APIs/releases/download/1.0.7/FeedioAPISetup.exe" class="btn btn-primary">
+                    <svg style="width:18px;height:18px;fill:white;margin-right:5px;" viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>
+                    Download .EXE
+                </a>
+                
+                <p class="desc-text">
+                    Diperlukan untuk generate API Key <strong>Topaz</strong>.
+                    Terhubung langsung sebagai jembatan ke Feedio Bot.
+                </p>
+            </div>
+
+            <div class="download-card">
+                <div class="icon-wrapper">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/>
+                    </svg>
+                </div>
+                <h3>Browser Extension</h3>
+                <span class="platform-name">Chrome Web Store</span>
+                <span class="version-badge">Selalu Update</span>
+
+                <a href="https://chromewebstore.google.com/detail/dkpcbhgnpemnepkklnjleiblojanklml?utm_source=item-share-cb" target="_blank" class="btn btn-outline">
+                    <svg style="width:18px;height:18px;fill:var(--primary-color);margin-right:5px;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    Install Extension
+                </a>
+
+                <p class="desc-text">
+                    Untuk <strong>Firefly, Google Image, Flow Ultra,</strong>.
+                    Solusi ringan berbasis web browser.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="content-section">
+        <div class="section-center">
+            <div class="section-header">
+                <h2>Apa Itu Feedio APIs?</h2>
+                <p>Mesin di balik otomatisasi konten kreatif Anda</p>
+            </div>
+            <div class="grid-split">
+                <div>
+                    <p style="text-align: justify; line-height: 1.8; color: #444;">
+                        Feedio APIs adalah perangkat lunak utilitas esensial yang bertugas menghasilkan (generate) API Key secara otomatis. Sistem ini bekerja sebagai tulang punggung yang menghubungkan berbagai layanan AI canggih ke dalam ekosistem <strong>Feedio Bot Automation</strong>.
+                    </p>
+                    <br>
+                    <p style="text-align: justify; line-height: 1.8; color: #444;">
+                        Dengan menggunakan Feedio APIs, Anda menghilangkan kerumitan pengaturan manual. Baik melalui Installer Desktop untuk performa berat, maupun Extension Browser untuk fleksibilitas, semuanya terintegrasi untuk mendukung produktivitas kreator Microstock.
+                    </p>
+                </div>
+                <div>
+                    <div style="background: #fcfcfc; padding: 30px; border: 1px solid #eee; border-radius: 12px; border-left: 5px solid var(--primary-color);">
+                        <h3 style="margin-bottom: 10px; color: var(--primary-color);">Fungsi Utama</h3>
+                        <ul style="list-style-position: inside; color: #555; line-height: 1.8;">
+                            <li>Generate API Key Topaz (Versi Desktop)</li>
+                            <li>Generate API Firefly & Google Models (Extension)</li>
+                            <li>Penghubung (Bridge) ke Feedio Bot</li>
+                            <li>Otomatisasi pembaruan token</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ecosystem" class="content-section" style="background: #f8f9fa;">
+        <div class="section-center">
+            <div class="section-header">
+                <h2>Dukungan Ekosistem Lengkap</h2>
+                <p>Satu tools untuk mengakses semua model AI terkemuka</p>
+            </div>
+
+            <div class="feature-list">
+                <div class="feature-tag">Flow Ultra</div>
+                <div class="feature-tag">Nanobanana Pro</div>
+                <div class="feature-tag">Imagen4</div>
+                <div class="feature-tag">ImagenFX</div>
+                <div class="feature-tag">Firefly Image</div>
+                <div class="feature-tag">Firefly Video</div>
+                <div class="feature-tag">Whisk</div>
+                <div class="feature-tag">Topaz Labs</div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px; color: #666; max-width: 700px; margin-left: auto; margin-right: auto;">
+                <p>Seluruh API yang dihasilkan mendukung fitur penuh Feedio seperti pembuatan VEO, Remove Background, dan Upscale Video/Gambar secara otomatis.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="demos" class="video-section">
+        <div class="section-center">
+            <div class="section-header">
+                <h2>Video Demo Penggunaan</h2>
+                <p>Panduan visual untuk memulai dengan cepat</p>
+            </div>
+            <div class="video-grid">
+                <div>
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_INSTALLER" title="Demo Installer" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">Panduan Feedio APIs Desktop (Windows)</div>
+                </div>
+                <div>
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_EXTENSION" title="Demo Extension" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">Panduan Browser Extension</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="section-center">
+            <h2 style="margin-bottom: 10px;">FEEDIO APIs</h2>
+            <p>Empowering Microstock Creators with Automation.</p>
+            <br>
+            <p style="font-size: 0.8rem; opacity: 0.6;">&copy; 2025 Feedio APIs. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = 'inc-okla';
+            const repo = 'Feedio-APIs';
+            const btn = document.getElementById('win-btn');
+            const badge = document.getElementById('win-ver');
+            const url = `https://api.github.com/repos/${user}/${repo}/releases/latest`;
+
+            fetch(url)
+                .then(r => {
+                    if (!r.ok) throw new Error('Fail');
+                    return r.json();
+                })
+                .then(d => {
+                    badge.textContent = `Versi Terbaru: ${d.tag_name}`;
+                    const asset = d.assets.find(a => a.name.endsWith('.exe'));
+                    if (asset) {
+                        btn.href = asset.browser_download_url;
+                    }
+                })
+                .catch(e => {
+                    badge.textContent = 'Versi: 1.0.7 (Stable)';
+                });
+        });
+    </script>
+</body>
+</html>
