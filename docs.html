@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi Feedio</title>
+    <style>
+        :root {
+            --bg-primary: #0f1115;
+            --bg-secondary: #181b21;
+            --bg-tertiary: #22262e;
+            --text-primary: #e6e6e6;
+            --text-secondary: #a0a0a0;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --border-color: #2d333b;
+            --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            height: 60px;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+            margin-left: 5px;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        aside {
+            width: 280px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 0;
+            flex-shrink: 0;
+        }
+
+        .nav-title {
+            padding: 0 1.5rem 0.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav li {
+            margin-bottom: 2px;
+        }
+
+        nav button {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 0.85rem 1.5rem;
+            color: var(--text-secondary);
+            font-family: var(--font-family);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            outline: none;
+        }
+
+        nav button:hover {
+            background-color: rgba(59, 130, 246, 0.05);
+            color: var(--text-primary);
+        }
+
+        nav button.active {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--accent-color);
+            border-left-color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        main {
+            flex: 1;
+            padding: 3rem 4rem;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .content-section {
+            display: none;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .content-section.active-section {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: var(--accent-color);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.8rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #d1d5db;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            color: #d1d5db;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        code {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            color: #fca5a5;
+        }
+
+        pre {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            margin: 1rem 0;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: #a7f3d0;
+            font-size: 0.85rem;
+        }
+
+        .placeholder-box {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+        }
+        
+        .placeholder-text {
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary { background-color: var(--accent-color); color: white; }
+        .btn-success { background-color: var(--success-color); color: white; }
+        .btn-outline { border: 1px solid var(--accent-color); color: var(--accent-color); background: transparent; }
+
+        .info-box {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .warning-box {
+            background-color: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--warning-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #ffdca3;
+        }
+
+        .error-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .error-item {
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 6px;
+            padding: 0.8rem 1rem;
+        }
+        
+        .error-item.success {
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        
+        .error-item.success .error-code { color: var(--success-color); }
+        .error-item.success .error-desc { color: #a7f3d0; }
+
+        .error-code {
+            color: var(--danger-color);
+            font-weight: 700;
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .error-desc {
+            color: #fca5a5;
+            font-size: 0.9rem;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #444; }
+
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            aside { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); }
+            main { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">FEEDIO <span>DOCS</span></div>
+    </header>
+
+    <div class="container">
+        <aside>
+            <div class="nav-title">Introduction</div>
+            <nav>
+                <ul>
+                    <li><button onclick="switchTab('flow-ultra', this)" class="nav-btn active">Flow Ultra</button></li>
+                    <li><button onclick="switchTab('firefly', this)" class="nav-btn">Firefly Pro</button></li>
+                    <li><button onclick="switchTab('google-image', this)" class="nav-btn">Google Image Labs</button></li>
+                    <li><button onclick="switchTab('remove-background', this)" class="nav-btn">Remove Background & Upscale</button></li>
+                    <li><button onclick="switchTab('topaz-upscaler', this)" class="nav-btn">Topaz Upscaler</button></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main>
+            <!-- FLOW ULTRA -->
+            <div id="flow-ultra" class="content-section active-section">
+                <h1>Flow Ultra</h1>
+                <p>
+                    Flow Ultra adalah modul integrasi untuk menghasilkan konten visual berkualitas tinggi (Video & Image) menggunakan model generatif terbaru seperti <strong>Veo</strong>, <strong>Imagen 4</strong>, dan <strong>Nano Banana Pro</strong>.
+                </p>
+
+                <div class="btn-group">
+                    <a href="https://labs.google/fx/id/tools/flow" target="_blank" class="btn btn-outline">🌐 Buka Google Flow</a>
+                    <a href="https://lynk.id/feedio/wlewkj8lj8j6" target="_blank" class="btn btn-success">🛒 Beli Paket Flow Ultra Murah</a>
+                </div>
+
+                <h2>Integrasi API & Token</h2>
+                <p>
+                    Koneksi ke Feedio Bot wajib menggunakan Token API khusus yang didapatkan melalui ekstensi browser. Ikuti langkah berikut:
+                </p>
+                <div class="warning-box">
+                    <strong>PENTING:</strong> Token ini hanya berlaku untuk pengguna Paket Flow Ultra.
+                </div>
+                <ol>
+                    <li>Unduh <strong>Ekstensi Feedio APIs</strong> di sini: <a href="https://Feedio.pro/APIs" style="color: var(--accent-color);">Feedio.pro/APIs</a>.</li>
+                    <li>Buka halaman Google Flow setelah ekstensi terpasang untuk mendapatkan token (Contoh: <code>ya.29xxxxddsg...</code>).</li>
+                    <li>Salin token tersebut. Di aplikasi Feedio, klik logo <strong>Kunci (API Access)</strong>.</li>
+                    <li>Tempel token di kolom API Key agar bot terhubung secara otomatis.</li>
+                </ol>
+
+                <div class="placeholder-box">
+                    <span class="placeholder-text">[FOTO: Tampilan Pop-up API Access dengan kolom input token]</span>
+                </div>
+
+                <h2>Konfigurasi & Pengaturan</h2>
+                <h3>Mode Generasi (Input Panel)</h3>
+                <ul>
+                    <li><strong>Image to Video:</strong> Wajib mengisi <em>Input Folder</em> (berisi gambar sumber). Prompt opsional.</li>
+                    <li><strong>Text to Video:</strong> <em>Input Folder</em> dikosongkan. Wajib mengisi <em>Prompt</em>.</li>
+                    <li><strong>Output Folder:</strong> Wajib diisi untuk menyimpan hasil unduhan.</li>
+                </ul>
+
+                <h3>Menu Settings (Pengaturan Teknis)</h3>
+                <ul>
+                    <li><strong>Model Flow:</strong>
+                        <ul>
+                            <li><code>Veo 3.1 Fast (Video)</code></li>
+                            <li><code>Veo 3.1 Fast [Lower Priority]</code></li>
+                            <li><code>Veo 2.1 Fast</code>.</li>
+                            <li><code>NanoBanana Pro</code>, <code>Imagen 4</code>.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Rasio Aspek:</strong>
+                        <ul>
+                            <li>Video: <code>16:9</code>, <code>9:16</code>.</li>
+                            <li>Image: <code>1:1</code>, <code>3:4</code>, <code>4:3</code>, <code>16:9</code>, <code>9:16</code>.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Paralel:</strong> Video (1-5), Image (1-4).</li>
+                    <li><strong>Cooldown:</strong> Wajib dipilih (None, 1-2 menit, 2-3 menit, 3-4 menit) untuk menghindari limit antrian.</li>
+                </ul>
+
+                <h2>Kode Kesalahan (Error Codes)</h2>
+                <div class="error-grid">
+                    <div class="error-item"><span class="error-code">400 - Bad Request</span><span class="error-desc">Permintaan/Input tidak valid.</span></div>
+                    <div class="error-item"><span class="error-code">401 - Unauthorized</span><span class="error-desc">Token API kadaluwarsa/salah. Ambil token baru via ekstensi.</span></div>
+                    <div class="error-item"><span class="error-code">403 - Forbidden</span><span class="error-desc">Akses ditolak atau paket tidak sesuai.</span></div>
+                    <div class="error-item"><span class="error-code">404 - Not Found</span><span class="error-desc">Sumber daya tidak ditemukan.</span></div>
+                    <div class="error-item"><span class="error-code">429 - Too Many Requests</span><span class="error-desc">Terlalu banyak permintaan. Naikkan durasi Cooldown.</span></div>
+                    <div class="error-item"><span class="error-code">500 - Internal Server Error</span><span class="error-desc">Kesalahan pada server Google Flow.</span></div>
+                </div>
+            </div>
+
+            <!-- FIREFLY -->
+            <div id="firefly" class="content-section">
+                <h1>Firefly</h1>
+                <p>
+                    Modul Firefly mendukung generasi visual tingkat lanjut (Gambar, Vektor, Video) menggunakan teknologi Adobe Firefly dan model partner lainnya.
+                </p>
+
+                <div class="btn-group">
+                    <a href="https://firefly.adobe.com" target="_blank" class="btn btn-outline">🌐 Buka Adobe Firefly</a>
+                    <a href="https://lynk.id/okla" target="_blank" class="btn btn-success">🛒 Beli Paket Firefly Murah</a>
+                </div>
+
+                <h2>Integrasi API & Token</h2>
+                <p>Cara menghubungkan Firefly dengan Feedio Bot:</p>
+                <ol>
+                    <li>Pastikan ekstensi <strong>Feedio APIs</strong> sudah terpasang.</li>
+                    <li>Kunjungi <a href="https://firefly.adobe.com" target="_blank" style="color:var(--accent-color)">firefly.adobe.com</a> agar ekstensi mengambil token sesi.</li>
+                    <li>Salin token dari ekstensi, buka Feedio, klik logo <strong>Kunci</strong>, dan tempel token.</li>
+                </ol>
+
+                <h2>Konfigurasi & Pengaturan</h2>
+                <h3>Mode Generasi</h3>
+                <div class="warning-box">
+                    <strong>INFO:</strong> Feedio versi ini tidak mendukung fitur <em>Image to Video</em> untuk Firefly. Hanya fitur Text-to-Image dan Text-to-Video yang tersedia. dan model ini hanya bisa digunakan untuk paket Firefly berbayar. paket gratis tidak bisa di gunakan.
+                </div>
+                <ul>
+                    <li><strong>Text to Image:</strong> Masukkan prompt, pilih rasio, tentukan jumlah gambar (Count Image).</li>
+                    <li><strong>Text to Video:</strong> Masukkan prompt, pilih resolusi dan rasio.</li>
+                </ul>
+
+                <h3>Menu Settings</h3>
+                <ul>
+                    <li><strong>Model AI:</strong> <code>Firefly Image 4/4 Ultra/5</code>, <code>NanoBanana Pro</code>, <code>Ideogram 3.0</code>, <code>Flux Pro</code>, <code>Firefly Video</code>, <code>Ray 3</code>.</li>
+                    <li><strong>Count Image:</strong> 1 sampai 4 gambar per proses.</li>
+                    <li><strong>Resolusi Video:</strong> <code>720p</code> atau <code>1080p</code>.</li>
+                    <li><strong>Rasio Aspek:</strong> <code>1:1</code>, <code>3:4</code>, <code>4:3</code>, <code>16:9</code>, <code>9:16</code>.</li>
+                </ul>
+
+                <div class="placeholder-box">
+                    <span class="placeholder-text">[FOTO: Tampilan Setting Firefly]</span>
+                </div>
+
+                <h2>Kode Kesalahan (Error Codes)</h2>
+                <div class="error-grid">
+                    <div class="error-item success"><span class="error-code">200 - OK</span><span class="error-desc">Berhasil.</span></div>
+                    <div class="error-item"><span class="error-code">400 - Bad Request</span><span class="error-desc">Format prompt salah.</span></div>
+                    <div class="error-item"><span class="error-code">401 - Unauthorized</span><span class="error-desc">Token tidak valid. Refresh halaman web Firefly & ambil token baru.</span></div>
+                    <div class="error-item"><span class="error-code">403 - Forbidden</span><span class="error-desc">Tidak memiliki izin akses.</span></div>
+                    <div class="error-item"><span class="error-code">406 - Not Acceptable</span><span class="error-desc">Parameter (rasio/resolusi) tidak didukung model.</span></div>
+                    <div class="error-item"><span class="error-code">500 - Internal Server Error</span><span class="error-desc">Gangguan server penyedia.</span></div>
+                    <div class="error-item"><span class="error-code">503 - Service Unavailable</span><span class="error-desc">Layanan sedang sibuk/maintenance.</span></div>
+                </div>
+            </div>
+
+            <!-- GOOGLE IMAGE -->
+            <div id="google-image" class="content-section">
+                <h1>Google Image Labs (Whisk & ImageFX)</h1>
+                <p>
+                    Fitur ini memanfaatkan kecerdasan buatan dari Google Labs untuk menghasilkan gambar berkualitas tinggi. Keunggulan utama dari modul ini adalah <strong>100% Gratis</strong> dan dapat digunakan oleh siapa saja yang memiliki akun Google.
+                </p>
+
+                <h2>Integrasi API & Token</h2>
+                <p>
+                    Meskipun gratis, autentikasi tetap diperlukan menggunakan token. Proses ini akan mengarahkan Anda ke layanan Whisk atau ImageFX.
+                </p>
+                <ol>
+                    <li>Pastikan ekstensi <strong>Feedio APIs</strong> sudah terinstal di browser Anda.</li>
+                    <li>Klik tombol untuk menghubungkan, Anda akan diarahkan ke halaman <strong>Whisk Image</strong> atau <strong>ImageFX</strong>.</li>
+                    <li>Ekstensi akan otomatis menghasilkan token.
+                        <br>Contoh format token: <code>ya.29xxxgadgh...</code></li>
+                    <li>Salin token tersebut dan tempelkan pada kolom API Key di aplikasi Feedio.</li>
+                </ol>
+
+                <div class="placeholder-box">
+                    <span class="placeholder-text">[FOTO: Tampilan Extention Feedio saat generate token di Whisk/ImageFX]</span>
+                </div>
+
+                <h2>Konfigurasi & Pengaturan</h2>
+                <h3>Pilihan Model & Parameter</h3>
+                <p>Di menu Settings (Gerigi), Anda dapat menyesuaikan konfigurasi berikut:</p>
+                <ul>
+                    <li><strong>Model AI:</strong>
+                        <ul>
+                            <li><code>Whisk</code> - Model standar Google Labs.</li>
+                            <li><code>ImageFX</code> - Model eksperimental terbaru dari Google.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Batch Processing:</strong> Tentukan jumlah gambar yang ingin diproses sekaligus.</li>
+                    <li><strong>Rasio Aspek:</strong> Sesuaikan dimensi output gambar (Landscape, Portrait, Square, dll) sesuai kebutuhan proyek Anda.</li>
+                </ul>
+
+                <h3>Batasan Kuota & Solusi (Limit)</h3>
+                <div class="warning-box">
+                    <strong>PERHATIAN:</strong> Meskipun gratis, layanan ini memiliki batasan kuota harian dari Google.
+                </div>
+                <p>Jika Anda mengalami kendala saat generate, perhatikan hal berikut:</p>
+                <ul>
+                    <li>Jika muncul <strong>Error 429</strong>, artinya Anda terkena limit.</li>
+                    <li><strong>Solusi 1:</strong> Coba generate ulang Token API Anda melalui ekstensi.</li>
+                    <li><strong>Solusi 2:</strong> Jika masih gagal, ganti akun Google Anda dengan akun lain (switch account) dan ambil token baru.</li>
+                    <li><strong>Solusi 3:</strong> Tunggu selama 24 jam hingga kuota di-reset otomatis oleh Google.</li>
+                </ul>
+
+                <h2>Kode Kesalahan (Error Codes)</h2>
+                <div class="error-grid">
+                    <div class="error-item"><span class="error-code">400 - Bad Request</span><span class="error-desc">Permintaan tidak valid. Cek prompt atau parameter.</span></div>
+                    <div class="error-item"><span class="error-code">401 - Unauthorized</span><span class="error-desc">Token tidak valid. Silakan ambil token baru di Whisk/ImageFX.</span></div>
+                    <div class="error-item"><span class="error-code">403 - Forbidden</span><span class="error-desc">Akses ditolak.</span></div>
+                    <div class="error-item"><span class="error-code">404 - Not Found</span><span class="error-desc">Endpoint tidak ditemukan.</span></div>
+                    <div class="error-item"><span class="error-code">429 - Too Many Requests</span><span class="error-desc">Limit Harian Habis. Ganti akun Google atau tunggu 24 jam.</span></div>
+                    <div class="error-item"><span class="error-code">500 - Internal Server Error</span><span class="error-desc">Kesalahan pada server Google Labs.</span></div>
+                </div>
+            </div>
+
+            <!-- REMOVE BACKGROUND & UPSCALE -->
+            <div id="remove-background" class="content-section">
+                <h1>Remove Background & Upscale</h1>
+                <p>
+                    Modul ini ditenagai oleh infrastruktur AI canggih yang dikelola oleh Feedio. Dirancang khusus untuk efisiensi tinggi, fitur ini memungkinkan pemrosesan gambar secara massal (Batch Processing) dengan hanya mengandalkan koneksi jaringan yang stabil.
+                </p>
+                <p>
+                    Semua pemrosesan dilakukan secara <strong>cloud-based</strong> (online), sehingga tidak membebani kinerja perangkat keras (CPU/GPU) komputer Anda.
+                </p>
+
+                <h2>Fitur Utama</h2>
+                <ul>
+                    <li><strong>Remove Background:</strong> Menghapus latar belakang dengan presisi tinggi.</li>
+                    <li><strong>Image Upscale:</strong> Meningkatkan resolusi gambar hingga <strong>2X lipat</strong> menggunakan teknologi AI, menjadikan gambar lebih jernih dan detail.</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>TIPS OPTIMALISASI:</strong>
+                    <ul style="margin-bottom:0; margin-top:0.5rem;">
+                        <li><strong>Background:</strong> Disarankan menggunakan gambar dengan objek yang jelas dan latar belakang datar/sederhana (tidak terlalu ramai) untuk hasil pemotongan yang presisi.</li>
+                        <li><strong>Ukuran File:</strong> Maksimal ukuran file yang dapat diproses adalah <strong>23 MB</strong> per gambar.</li>
+                        <li><strong>Urutan Proses:</strong> Sangat disarankan untuk melakukan <em>Upscale</em> terlebih dahulu, baru kemudian melakukan <em>Remove Background</em> untuk detail yang lebih baik.</li>
+                    </ul>
+                </div>
+
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; margin: 2rem 0;">
+                    <div style="flex: 1; min-width: 250px; text-align: center;">
+                        <p style="margin-bottom: 0.5rem; color: var(--text-secondary); font-weight: 600;">BEFORE (Asli)</p>
+                        <div class="placeholder-box" style="margin: 0; min-height: 200px;">
+                            <span class="placeholder-text">[FOTO BEFORE]</span>
+                        </div>
+                    </div>
+                    <div style="flex: 1; min-width: 250px; text-align: center;">
+                        <p style="margin-bottom: 0.5rem; color: var(--accent-color); font-weight: 600;">AFTER (Result)</p>
+                        <div class="placeholder-box" style="margin: 0; min-height: 200px; border-color: var(--accent-color);">
+                            <span class="placeholder-text">[FOTO AFTER]</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Mekanisme API & Akses Unlimited</h2>
+                <p>
+                    Fitur ini bersifat <strong>Unlimited</strong> (tanpa batasan jumlah penggunaan). API Key yang dihasilkan bersifat sementara dan akan kadaluwarsa (expired) dalam 30-60 menit.
+                </p>
+
+                <h3>Cara Mendapatkan API Key:</h3>
+                <ol>
+                    <li>Klik logo <strong>Kunci (API Access)</strong> di pojok kanan atas aplikasi Feedio.</li>
+                    <li>Klik tombol <strong>Get API Key</strong>.</li>
+                    <li>Tunggu 5-10 detik. Sistem akan otomatis mengisi kolom API Key.</li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>SOLUSI "CHROME NOT FOUND":</strong> Jika muncul error ini, silakan unduh dan instal ulang Chrome (timpa versi lama) dari: <a href="https://www.google.com/intl/id_id/chrome/" target="_blank">Download Google Chrome</a>.
+                </div>
+
+                <h2>Panduan Penggunaan</h2>
+                <p>Proses penggunaan otomatis (Zero Configuration):</p>
+                <ol>
+                    <li>Pastikan API Key sudah terisi.</li>
+                    <li><strong>Input Folder:</strong> Pilih folder gambar sumber.</li>
+                    <li><strong>Output Folder:</strong> Pilih folder penyimpanan.</li>
+                    <li><strong>Pilih Model (Home):</strong> Pilih <code>Remove Background</code> atau <code>Upscale Image</code>.</li>
+                    <li>Klik <strong>Generate</strong>. Tidak perlu mengubah pengaturan apapun di menu Settings.</li>
+                </ol>
+            </div>
+
+            <!-- TOPAZ UPSCALER -->
+            <div id="topaz-upscaler" class="content-section">
+                <h1>Topaz Upscaler</h1>
+                <p>
+                    Modul Topaz Upscaler di Feedio memungkinkan Anda melakukan restorasi dan peningkatan kualitas visual tingkat bioskop secara massal (Batch Processing). Dengan teknologi AI canggih, Anda dapat meningkatkan video hingga resolusi 4K dan gambar hingga resolusi tinggi dengan detail yang super tajam.
+                </p>
+                <p>
+                    Sistem ini berjalan sepenuhnya secara <strong>Online (Cloud-Based)</strong>. Artinya, Anda dapat memproses video 4K bahkan pada perangkat dengan spesifikasi rendah ("device kentang") tanpa membebani hardware komputer Anda.
+                </p>
+
+                <div class="btn-group">
+                    <a href="https://Feedio.pro/APIs" target="_blank" class="btn btn-outline">⬇️ Download Software Feedio APIs</a>
+                    <a href="https://lynk.id/feedio/r6lln63xvpp7" target="_blank" class="btn btn-success">🛒 Beli API Topaz Siap Pakai</a>
+                </div>
+
+                <h2>Fitur & Konfigurasi</h2>
+                <h3>1. Mode & Pengaturan (Settings)</h3>
+                <p>Di menu Home, tersedia dua pilihan model utama:</p>
+                <ul>
+                    <li><strong>Topaz Gigapixel:</strong> Peningkatan kualitas untuk foto.</li>
+                    <li><strong>Topaz Video:</strong> Peningkatan kualitas untuk video.</li>
+                </ul>
+
+                <p>Pengaturan detail di menu Settings (Gerigi):</p>
+                <ul>
+                    <li><strong>Resolusi (Resolution):</strong> Pilihan peningkatan HD, 4K, atau skala 2x dan 4x.</li>
+                    <li><strong>Model AI:</strong> Tersedia berbagai model Topaz yang dapat disesuaikan dengan jenis footage.</li>
+                    <li><strong>Video Settings:</strong>
+                        <ul>
+                            <li><strong>Audio:</strong> Pilihan <em>Copy</em> (pertahankan suara) atau <em>None</em> (hapus suara).</li>
+                            <li><strong>FPS:</strong> Tingkatkan kelancaran video ke 24, 30, atau 60 FPS.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>2. Otomatisasi API Key (Software Feedio APIs)</h3>
+                <p>
+                    Untuk menggunakan fitur ini, Anda memerlukan API Key khusus Topaz. Feedio menyediakan alat bantu otomatis berupa software desktop <strong>"Feedio APIs"</strong> yang 100% Gratis (selama kebijakan Topaz mengizinkan).
+                </p>
+                
+                <div class="info-box">
+                    <strong>Kapasitas API:</strong> 1 (Satu) API Key biasanya dapat memproses hingga <strong>7 Video (Resolusi 4K)</strong> sebelum expired. API tidak memiliki batasan waktu (no expiry time) jika belum digunakan.
+                </div>
+
+                <ol>
+                    <li>Unduh dan instal software <strong>Feedio APIs</strong> dari tautan di atas.</li>
+                    <li>Buka software tersebut, lalu klik tombol <strong>Start</strong>.</li>
+                    <li>Software akan secara otomatis menghasilkan API Key Topaz sebanyak mungkin tanpa campur tangan manual.</li>
+                    <li>Salin API Key yang dihasilkan.</li>
+                </ol>
+
+                <h3>3. Batch API Processing (Paralel)</h3>
+                <p>
+                    Salah satu fitur unggulan Feedio adalah kemampuan memproses banyak API sekaligus (Batch API). Ini memungkinkan proses upscale berjalan secara paralel dan berkelanjutan.
+                </p>
+                <p>
+                    Masuk ke menu <strong>API Access (Logo Kunci)</strong> di Feedio, lalu masukkan API Key Anda dengan format satu key per baris (enter ke bawah).
+                </p>
+
+                <div style="margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem; font-weight: 600;">Contoh Format Single API Key:</div>
+                <pre><code>b8e7ea1f-5115-49b7-80a7-11b9ebe6a7ea</code></pre>
+
+                <div style="margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem; font-weight: 600;">Contoh Format Batch API Key (Susunan Multi-line):</div>
+                <pre><code>b8e7ea1f-5115-49b7-80a7-11b9ebe6a7ea
+3a1cc23a-b2de-4497-a4cf-32787a305f8a
+096378cb-394a-4362-a406-a78f16d4de50
+1b068250-eba7-4579-9244-a1e5922ed004</code></pre>
+
+                <p>Dengan memasukkan banyak API sekaligus, Feedio akan otomatis beralih ke API berikutnya jika API sebelumnya sudah mencapai batas limit (7 video), memastikan antrian render Anda tidak terputus.</p>
+
+                <h2>Kode Kesalahan (Error Codes)</h2>
+                <div class="error-grid">
+                    <div class="error-item">
+                        <span class="error-code">400 - Bad Request</span>
+                        <span class="error-desc">Permintaan berisi data yang tidak valid, format salah, atau parameter query yang tidak dikenali server.</span>
+                    </div>
+                    <div class="error-item">
+                        <span class="error-code">401 - Unauthorized</span>
+                        <span class="error-desc">Otorisasi gagal. Kunci API (API Key) tidak valid, kosong, atau telah kadaluwarsa.</span>
+                    </div>
+                    <div class="error-item">
+                        <span class="error-code">403 - Forbidden</span>
+                        <span class="error-desc">Akses ditolak. Kunci API Anda tidak memiliki izin untuk permintaan ini atau kuota telah habis.</span>
+                    </div>
+                    <div class="error-item">
+                        <span class="error-code">404 - Not Found</span>
+                        <span class="error-desc">Sumber daya atau endpoint yang diminta tidak ditemukan di server Topaz.</span>
+                    </div>
+                    <div class="error-item">
+                        <span class="error-code">409 - Conflict</span>
+                        <span class="error-desc">Terjadi konflik pemrosesan permintaan dengan keadaan sumber daya server saat ini.</span>
+                    </div>
+                    <div class="error-item">
+                        <span class="error-code">413 - Payload Too Large</span>
+                        <span class="error-desc">Ukuran file input terlalu besar dan melebihi batas kapasitas pemrosesan server.</span>
+                    </div>
+                    <div class="error-item">
+                        <span class="error-code">429 - Too Many Requests</span>
+                        <span class="error-desc">Rate Limiting terlampaui. Terlalu banyak permintaan dikirim dalam waktu singkat. Silakan ganti API Key.</span>
+                    </div>
+                    <div class="error-item">
+                        <span class="error-code">500 - Internal Server Error</span>
+                        <span class="error-desc">Terjadi kesalahan teknis yang tidak terduga pada sisi server Topaz. Silakan coba beberapa saat lagi.</span>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        function switchTab(sectionId, button) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active-section');
+            });
+
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active-section');
+            }
+
+            button.classList.add('active');
+        }
+    </script>
+</body>
+</html>
