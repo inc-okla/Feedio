@@ -35,8 +35,8 @@
             line-height: 1.6;
             display: flex;
             flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
+            height: 100vh; /* Kunci tinggi body agar seperti aplikasi */
+            overflow: hidden; /* Mencegah scroll body utama */
         }
 
         header {
@@ -90,11 +90,13 @@
             opacity: 0.8;
         }
 
+        /* Container Utama */
         .container {
             display: flex;
-            flex: 1;
-            overflow: hidden;
+            flex: 1; /* Mengisi sisa ruang di bawah header */
+            overflow: hidden; /* Mencegah container bocor keluar */
             position: relative;
+            height: calc(100vh - var(--header-height));
         }
 
         aside {
@@ -107,6 +109,7 @@
             flex-shrink: 0;
             z-index: 40;
             transition: transform 0.3s ease-in-out;
+            overflow-y: auto; /* Sidebar bisa discroll jika menu panjang */
         }
 
         .nav-title {
@@ -153,12 +156,15 @@
             font-weight: 600;
         }
 
+        /* Main Content Area */
         main {
-            flex: 1;
+            flex: 1; /* Ambil sisa ruang */
             padding: 3rem 4rem;
-            overflow-y: auto;
+            overflow-y: auto; /* Scroll terjadi DI SINI */
             position: relative;
             width: 100%;
+            height: 100%; /* Paksa tinggi penuh */
+            -webkit-overflow-scrolling: touch; /* Smooth scroll untuk iOS */
         }
 
         .sidebar-overlay {
@@ -180,6 +186,7 @@
             max-width: 900px;
             margin: 0 auto;
             animation: fadeIn 0.3s ease-in-out;
+            padding-bottom: 50px; /* Ruang extra di bawah agar nyaman discroll */
         }
 
         .content-section.active-section {
@@ -364,7 +371,9 @@
             }
 
             .container {
-                display: block;
+                /* Perbaikan Utama: Kembalikan ke Flex Column agar Main punya batas tinggi */
+                flex-direction: column; 
+                height: calc(100vh - var(--header-height)); 
             }
 
             aside {
@@ -376,6 +385,7 @@
                 transform: translateX(-100%);
                 box-shadow: none;
                 border-right: 1px solid var(--border-color);
+                z-index: 100;
             }
 
             aside.open {
@@ -386,11 +396,15 @@
             .sidebar-overlay.active {
                 display: block;
                 opacity: 1;
+                z-index: 90;
             }
 
             main {
                 padding: 2rem 1.5rem;
                 width: 100%;
+                /* Perbaikan Scroll: Paksa overflow auto di main container */
+                overflow-y: auto; 
+                flex: 1;
             }
 
             h1 {
