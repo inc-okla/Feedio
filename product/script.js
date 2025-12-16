@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
           updateGlobalState();
           closeModal();
 
-          window.location.href = 'verifed.html?' + params.toString();
+          window.location.href = 'verifed?' + params.toString();
         },
         onPending: function(result) {
           alert('Payment pending. Please complete the payment.');
