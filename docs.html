@@ -19,6 +19,7 @@
             --danger-color: #ef4444;
             --border-color: #2d333b;
             --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --header-height: 60px;
         }
 
         * {
@@ -41,32 +42,59 @@
         header {
             background-color: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
-            padding: 0 2rem;
+            padding: 0 1.5rem;
             display: flex;
             align-items: center;
-            height: 60px;
+            height: var(--header-height);
             flex-shrink: 0;
-            z-index: 10;
+            z-index: 50;
+            position: relative;
         }
 
-        .logo {
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            margin-right: 15px;
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none; 
+            gap: 10px; 
+        }
+
+        .logo-img {
+            height: 25px; 
+            width: auto;
+        }
+
+        .logo-text {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--text-primary);
+            color: var(--accent-color); 
             letter-spacing: 1px;
-            display: flex;
-            align-items: center;
         }
-
-        .logo span {
-            color: var(--accent-color);
-            margin-left: 5px;
+        
+        .logo-link:hover {
+            opacity: 0.8;
         }
 
         .container {
             display: flex;
             flex: 1;
             overflow: hidden;
+            position: relative;
         }
 
         aside {
@@ -77,6 +105,8 @@
             flex-direction: column;
             padding: 1.5rem 0;
             flex-shrink: 0;
+            z-index: 40;
+            transition: transform 0.3s ease-in-out;
         }
 
         .nav-title {
@@ -128,6 +158,21 @@
             padding: 3rem 4rem;
             overflow-y: auto;
             position: relative;
+            width: 100%;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(2px);
+            z-index: 30;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .content-section {
@@ -310,44 +355,68 @@
         ::-webkit-scrollbar-thumb:hover { background: #444; }
 
         @media (max-width: 768px) {
-            .container { flex-direction: column; }
-            aside { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); }
-            main { padding: 2rem; }
-        }
-        .logo-link {
-            display: flex;
-            align-items: center;
-            text-decoration: none; 
-            gap: 10px; 
-        }
+            header {
+                padding: 0 1rem;
+            }
 
-        .logo-img {
-            height: 25px; 
-            width: auto;
-        }
+            .mobile-menu-btn {
+                display: block;
+            }
 
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-color); 
-            letter-spacing: 1px;
-        }
-        
-        .logo-link:hover {
-            opacity: 0.8;
+            .container {
+                display: block;
+            }
+
+            aside {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                bottom: 0;
+                width: 260px;
+                transform: translateX(-100%);
+                box-shadow: none;
+                border-right: 1px solid var(--border-color);
+            }
+
+            aside.open {
+                transform: translateX(0);
+                box-shadow: 4px 0 15px rgba(0,0,0,0.5);
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+                opacity: 1;
+            }
+
+            main {
+                padding: 2rem 1.5rem;
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>
+        <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Toggle Menu">
+            <svg viewBox="0 0 24 24">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+        </button>
+
         <a href="https://feedio.pro" class="logo-link">
             <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhhvP6pgETkPNJe2AT6utIKqAKwYYVywCjnLIxC18X-YNMG7qtLFQWoYVuWuegreDfL_GIZyWG-t1ClUHUd_jF1afxWCGPFfRLJaEftDcRlD7o50093ZMambTtgGCjnWpth-nWNqDrIIHcvwC6vT22h1WNHA1W-uetp7pJMAQrzIS_CAC2C7SgYgdYNWR6P" alt="Feedio Logo" class="logo-img">
             <span class="logo-text">DOCS</span>
         </a>
     </header>
 
+    <div class="sidebar-overlay" onclick="closeSidebar()"></div>
+
     <div class="container">
-        <aside>
+        <aside id="sidebar">
             <div class="nav-title">Introduction</div>
             <nav>
                 <ul>
@@ -741,6 +810,20 @@
     </div>
 
     <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
         function switchTab(sectionId, button) {
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(section => {
@@ -758,6 +841,10 @@
             }
 
             button.classList.add('active');
+
+            if (window.innerWidth <= 768) {
+                closeSidebar();
+            }
         }
     </script>
 </body>
