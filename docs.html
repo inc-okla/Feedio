@@ -35,8 +35,8 @@
             line-height: 1.6;
             display: flex;
             flex-direction: column;
-            height: 100vh; /* Kunci tinggi body agar seperti aplikasi */
-            overflow: hidden; /* Mencegah scroll body utama */
+            height: 100vh;
+            overflow: hidden;
         }
 
         header {
@@ -90,11 +90,10 @@
             opacity: 0.8;
         }
 
-        /* Container Utama */
         .container {
             display: flex;
-            flex: 1; /* Mengisi sisa ruang di bawah header */
-            overflow: hidden; /* Mencegah container bocor keluar */
+            flex: 1;
+            overflow: hidden;
             position: relative;
             height: calc(100vh - var(--header-height));
         }
@@ -109,7 +108,7 @@
             flex-shrink: 0;
             z-index: 40;
             transition: transform 0.3s ease-in-out;
-            overflow-y: auto; /* Sidebar bisa discroll jika menu panjang */
+            overflow-y: auto;
         }
 
         .nav-title {
@@ -156,15 +155,14 @@
             font-weight: 600;
         }
 
-        /* Main Content Area */
         main {
-            flex: 1; /* Ambil sisa ruang */
+            flex: 1;
             padding: 3rem 4rem;
-            overflow-y: auto; /* Scroll terjadi DI SINI */
+            overflow-y: auto;
             position: relative;
             width: 100%;
-            height: 100%; /* Paksa tinggi penuh */
-            -webkit-overflow-scrolling: touch; /* Smooth scroll untuk iOS */
+            height: 100%;
+            -webkit-overflow-scrolling: touch;
         }
 
         .sidebar-overlay {
@@ -186,7 +184,7 @@
             max-width: 900px;
             margin: 0 auto;
             animation: fadeIn 0.3s ease-in-out;
-            padding-bottom: 50px; /* Ruang extra di bawah agar nyaman discroll */
+            padding-bottom: 50px;
         }
 
         .content-section.active-section {
@@ -294,11 +292,20 @@
             font-weight: 600;
             font-size: 0.9rem;
             transition: transform 0.2s, opacity 0.2s;
+            cursor: pointer;
+            border: none;
         }
 
         .btn:hover {
             opacity: 0.9;
             transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            background-color: #4b5563;
+            cursor: not-allowed;
+            transform: none;
+            opacity: 0.7;
         }
 
         .btn-primary { background-color: var(--accent-color); color: white; }
@@ -356,6 +363,80 @@
             font-size: 0.9rem;
         }
 
+        .license-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent-color);
+            animation: spin 1s ease-in-out infinite;
+            margin: 10px auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .status-msg {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        .status-success {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            display: block;
+        }
+
+        .status-error {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--danger-color);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            display: block;
+        }
+
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-primary); }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
@@ -371,7 +452,6 @@
             }
 
             .container {
-                /* Perbaikan Utama: Kembalikan ke Flex Column agar Main punya batas tinggi */
                 flex-direction: column; 
                 height: calc(100vh - var(--header-height)); 
             }
@@ -402,7 +482,6 @@
             main {
                 padding: 2rem 1.5rem;
                 width: 100%;
-                /* Perbaikan Scroll: Paksa overflow auto di main container */
                 overflow-y: auto; 
                 flex: 1;
             }
@@ -439,6 +518,7 @@
                     <li><button onclick="switchTab('google-image', this)" class="nav-btn">Google Image Labs</button></li>
                     <li><button onclick="switchTab('remove-background', this)" class="nav-btn">Remove Background & Upscale</button></li>
                     <li><button onclick="switchTab('topaz-upscaler', this)" class="nav-btn">Topaz Upscaler</button></li>
+                    <li><button onclick="switchTab('license', this)" class="nav-btn">License & Copyright</button></li>
                 </ul>
             </nav>
         </aside>
@@ -820,6 +900,58 @@
                 </div>
             </div>
 
+            <div id="license" class="content-section">
+                <h1>License & Copyright</h1>
+                <p>
+                    Hak Cipta © <strong>Feedio Studio</strong>. Seluruh hak cipta dilindungi undang-undang. Feedio adalah perangkat lunak berlisensi, bukan dijual. Kebijakan penggunaan, fitur, dan layanan dapat berubah sewaktu-waktu tanpa pemberitahuan sebelumnya menyesuaikan dengan pengembangan aplikasi.
+                </p>
+
+                <h2>Legalitas & Pelanggaran</h2>
+                <div class="warning-box">
+                    <strong>PERINGATAN KERAS:</strong>
+                    <p style="margin-top: 0.5rem; margin-bottom: 0;">
+                        Dilarang keras memperjualbelikan ulang, mendistribusikan, memodifikasi, atau membajak lisensi dan perangkat lunak Feedio tanpa izin tertulis dari Feedio Studio. Segala bentuk pelanggaran hak cipta akan diproses secara hukum dan dapat dikenakan sanksi pidana sesuai dengan Undang-Undang Hak Cipta dan Peraturan Perundang-undangan yang berlaku di wilayah hukum terkait.
+                    </p>
+                </div>
+
+                <h2>Pembelian Lisensi Resmi</h2>
+                <p>
+                    Untuk keamanan dan dukungan teknis penuh, pastikan Anda hanya membeli lisensi Feedio melalui saluran resmi kami. Pembelian di luar jalur resmi berisiko terkena pemblokiran permanen dan tidak mendapatkan pembaruan fitur.
+                </p>
+                <ul>
+                    <li><strong>Website Resmi:</strong> <a href="https://feedio.pro" target="_blank" style="color: var(--accent-color);">feedio.pro</a></li>
+                    <li><strong>In-App Purchase:</strong> Klik logo <strong>Keranjang Belanja</strong> di pojok kanan atas aplikasi Feedio.</li>
+                </ul>
+
+                <h2>Pemindahan Lisensi (License Transfer)</h2>
+                <p>
+                    Feedio mendukung fleksibilitas perangkat. Anda diperbolehkan untuk memindahkan lisensi dari satu perangkat ke perangkat lain (misalnya saat ganti komputer baru). Proses ini memerlukan <strong>Machine ID</strong> dari perangkat lama dan perangkat baru.
+                </p>
+                
+                <div class="license-card">
+                    <h3 style="margin-top: 0; text-align: center;">Feedio License Transfer</h3>
+                    <p style="text-align: center; font-size: 0.9rem; color: var(--text-secondary);">Masukkan ID Lisensi/Machine ID untuk memproses pemindahan.</p>
+                    
+                    <form id="transferForm">
+                        <div class="form-group">
+                            <label for="oldId" class="form-label">Current License ID (Perangkat Lama)</label>
+                            <input type="text" id="oldId" name="oldId" class="form-input" placeholder="Masukkan ID Lisensi Lama" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="newId" class="form-label">New License ID (Perangkat Baru)</label>
+                            <input type="text" id="newId" name="newId" class="form-input" placeholder="Masukkan ID Lisensi Baru" required>
+                        </div>
+                        
+                        <div class="loading-spinner"></div>
+                        
+                        <div id="statusMessage" class="status-msg"></div>
+                        
+                        <button type="submit" id="transferBtn" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">Transfer License</button>
+                    </form>
+                </div>
+            </div>
+
         </main>
     </div>
 
@@ -860,6 +992,50 @@
                 closeSidebar();
             }
         }
+
+        const API_URL = "https://script.google.com/macros/s/AKfycbw7qgvPNeLw7B3HBcmTMN6UmInfgdn9ETt4McnT6p8U1muXtLg_YjfHAoOQCsM_4vlY/exec";
+
+        document.getElementById('transferForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const oldId = document.getElementById('oldId').value.trim();
+            const newId = document.getElementById('newId').value.trim();
+            const statusMessage = document.getElementById('statusMessage');
+            const loading = document.querySelector('.loading-spinner');
+            const transferBtn = document.getElementById('transferBtn');
+
+            statusMessage.style.display = 'none';
+            statusMessage.className = 'status-msg';
+            statusMessage.textContent = '';
+            
+            loading.style.display = 'block';
+            transferBtn.disabled = true;
+
+            try {
+                const res = await fetch(API_URL, {
+                    method: "POST",
+                    body: JSON.stringify({ oldId, newId })
+                });
+
+                const json = await res.json();
+                
+                if (!json.success) {
+                    statusMessage.className = 'status-msg status-error';
+                    statusMessage.textContent = json.message;
+                } else {
+                    statusMessage.className = 'status-msg status-success';
+                    statusMessage.textContent = json.message;
+                    document.getElementById('transferForm').reset();
+                }
+            } catch (error) {
+                statusMessage.className = 'status-msg status-error';
+                statusMessage.textContent = "Terjadi kesalahan koneksi. Silakan coba lagi.";
+            } finally {
+                loading.style.display = 'none';
+                statusMessage.style.display = 'block';
+                transferBtn.disabled = false;
+            }
+        });
     </script>
 </body>
 </html>
