@@ -361,7 +361,6 @@
         </aside>
 
         <main>
-            <!-- FLOW ULTRA -->
             <div id="flow-ultra" class="content-section active-section">
                 <h1>Flow Ultra</h1>
                 <p>
@@ -430,7 +429,6 @@
                 </div>
             </div>
 
-            <!-- FIREFLY -->
             <div id="firefly" class="content-section">
                 <h1>Firefly</h1>
                 <p>
@@ -484,7 +482,6 @@
                 </div>
             </div>
 
-            <!-- GOOGLE IMAGE -->
             <div id="google-image" class="content-section">
                 <h1>Google Image Labs (Whisk & ImageFX)</h1>
                 <p>
@@ -544,7 +541,6 @@
                 </div>
             </div>
 
-            <!-- REMOVE BACKGROUND & UPSCALE -->
             <div id="remove-background" class="content-section">
                 <h1>Remove Background & Upscale</h1>
                 <p>
@@ -560,8 +556,20 @@
                     <li><strong>Image Upscale:</strong> Meningkatkan resolusi gambar hingga <strong>2X lipat</strong> menggunakan teknologi AI, menjadikan gambar lebih jernih dan detail.</li>
                 </ul>
 
+                <h2>Mekanisme Validasi File & Efisiensi Kuota</h2>
                 <div class="info-box">
-                    <strong>TIPS OPTIMALISASI:</strong>
+                    <strong>PENTING: Logika Pemrosesan Otomatis</strong>
+                    <p style="margin-top: 0.5rem;">Sistem Feedio menerapkan protokol efisiensi cerdas untuk melindungi kuota API dan mencegah duplikasi pekerjaan. Harap perhatikan mekanisme berikut:</p>
+                    <ol style="margin-bottom: 0;">
+                        <li><strong>Penamaan Otomatis (Auto-Renaming):</strong> Setiap file sumber yang berhasil diproses akan secara otomatis diubah namanya dengan menyisipkan label <code>Feedio_Success</code> pada nama file.</li>
+                        <li><strong>Pencegahan Proses Ganda:</strong> Sistem diprogram untuk secara otomatis melewati (skip) file apa pun yang mengandung nama <code>Feedio_Success</code>. Ini memastikan file yang sama tidak diproses ulang secara tidak sengaja.</li>
+                        <li><strong>Indikator Proses Berhenti:</strong> Jika setelah memasukkan API Key proses langsung berhenti tanpa memproses satu pun file, mohon periksa folder sumber Anda. Hal ini menandakan bahwa seluruh file di dalamnya telah teridentifikasi sebagai file yang sudah selesai diproses (memiliki label success).</li>
+                        <li><strong>Instruksi Pemrosesan Ulang:</strong> Jika Anda bermaksud memproses ulang file yang sudah pernah sukses, Anda wajib melakukan <em>Rename</em> manual pada file tersebut untuk menghilangkan kata <code>Feedio_Success</code> sebelum memulai proses kembali.</li>
+                    </ol>
+                </div>
+
+                <div class="info-box" style="background-color: rgba(16, 185, 129, 0.1); border-left-color: var(--success-color);">
+                    <strong>TIPS OPTIMALISASI HASIL:</strong>
                     <ul style="margin-bottom:0; margin-top:0.5rem;">
                         <li><strong>Background:</strong> Disarankan menggunakan gambar dengan objek yang jelas dan latar belakang datar/sederhana (tidak terlalu ramai) untuk hasil pemotongan yang presisi.</li>
                         <li><strong>Ukuran File:</strong> Maksimal ukuran file yang dapat diproses adalah <strong>23 MB</strong> per gambar.</li>
@@ -611,7 +619,6 @@
                 </ol>
             </div>
 
-            <!-- TOPAZ UPSCALER -->
             <div id="topaz-upscaler" class="content-section">
                 <h1>Topaz Upscaler</h1>
                 <p>
@@ -680,6 +687,18 @@
 1b068250-eba7-4579-9244-a1e5922ed004</code></pre>
 
                 <p>Dengan memasukkan banyak API sekaligus, Feedio akan otomatis beralih ke API berikutnya jika API sebelumnya sudah mencapai batas limit (7 video), memastikan antrian render Anda tidak terputus.</p>
+
+                <h2>Mekanisme Validasi File & Efisiensi Kuota</h2>
+                <div class="info-box">
+                    <strong>PENTING: Logika Pemrosesan Otomatis</strong>
+                    <p style="margin-top: 0.5rem;">Guna menghemat penggunaan API Key Topaz dan waktu pemrosesan, sistem menerapkan aturan validasi berikut:</p>
+                    <ol style="margin-bottom: 0;">
+                        <li><strong>Penamaan Otomatis (Auto-Renaming):</strong> Setiap file yang telah selesai diproses akan di-rename oleh sistem dengan penambahan akhiran <code>Feedio_Success</code>.</li>
+                        <li><strong>Deteksi File Selesai:</strong> Sistem akan memindai folder input dan secara otomatis melewati (skip) file yang memiliki nama <code>Feedio_Success</code> agar tidak membuang kuota API pada file yang sama.</li>
+                        <li><strong>Indikator Berhenti Otomatis:</strong> Apabila Anda menekan tombol proses dan sistem langsung berhenti tanpa aktivitas, harap periksa folder sumber. Hal ini terjadi karena sistem mendeteksi semua file dalam folder tersebut sudah pernah diproses sebelumnya.</li>
+                        <li><strong>Cara Memproses Ulang:</strong> Jika Anda ingin melakukan upscale ulang pada file yang sama, Anda harus me-rename file tersebut kembali ke nama aslinya (hapus bagian <code>Feedio_Success</code>) agar sistem membacanya sebagai file baru.</li>
+                    </ol>
+                </div>
 
                 <h2>Kode Kesalahan (Error Codes)</h2>
                 <div class="error-grid">
