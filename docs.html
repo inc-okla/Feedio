@@ -519,6 +519,7 @@
                     <li><button onclick="switchTab('remove-background', this)" class="nav-btn">Remove Background & Upscale</button></li>
                     <li><button onclick="switchTab('topaz-upscaler', this)" class="nav-btn">Topaz Upscaler</button></li>
                     <li><button onclick="switchTab('license', this)" class="nav-btn">License & Copyright</button></li>
+                    <li><button onclick="switchTab('trial-mode', this)" class="nav-btn">Trial Mode</button></li>
                 </ul>
             </nav>
         </aside>
@@ -952,6 +953,52 @@
                 </div>
             </div>
 
+            <div id="trial-mode" class="content-section">
+                <h1>Trial Mode (Uji Coba Gratis)</h1>
+                <p>
+                    Bagi pengguna baru yang ingin merasakan kecanggihan Feedio sebelum membeli lisensi penuh, kami menyediakan <strong>Mode Uji Coba (Trial)</strong>. Fasilitas ini memungkinkan Anda mengakses fitur premium dalam jangka waktu terbatas.
+                </p>
+
+                <h2>Ketentuan Trial</h2>
+                <ul>
+                    <li><strong>Durasi:</strong> Masa uji coba berlaku selama <strong>3 Hari</strong> (dihitung sejak tanggal pendaftaran + 3 hari).</li>
+                    <li><strong>Syarat Pendaftaran:</strong> Wajib menyertakan ID Machine (Perangkat), Email aktif, dan Nomor WhatsApp yang dapat dihubungi.</li>
+                    <li><strong>Satu Kali Kesempatan:</strong> Setiap perangkat (Machine ID) hanya berhak mendapatkan kesempatan trial satu kali. Jika sistem mendeteksi perangkat Anda sudah pernah terdaftar sebelumnya, permintaan akan ditolak.</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>PENTING:</strong> Jika masa trial Anda telah habis atau permohonan trial ditolak karena sudah pernah digunakan, silakan lakukan pembelian lisensi resmi melalui menu <strong>Keranjang Belanja</strong> di dalam aplikasi Feedio.
+                </div>
+
+                <div class="license-card">
+                    <h3 style="margin-top: 0; text-align: center;">Aktivasi Feedio Trial</h3>
+                    <p style="text-align: center; font-size: 0.9rem; color: var(--text-secondary);">Lengkapi data di bawah ini untuk memulai masa uji coba 3 hari.</p>
+                    
+                    <form id="trialForm">
+                        <div class="form-group">
+                            <label for="trialId" class="form-label">Machine ID (Dari Aplikasi Feedio)</label>
+                            <input type="text" id="trialId" name="trialId" class="form-input" placeholder="Contoh: 12345-ABCDE-67890" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="trialPhone" class="form-label">Nomor WhatsApp Aktif</label>
+                            <input type="tel" id="trialPhone" name="trialPhone" class="form-input" placeholder="Contoh: 08123456789" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="trialEmail" class="form-label">Alamat Email</label>
+                            <input type="email" id="trialEmail" name="trialEmail" class="form-input" placeholder="Contoh: nama@email.com" required>
+                        </div>
+                        
+                        <div id="trialLoading" class="loading-spinner"></div>
+                        
+                        <div id="trialStatus" class="status-msg"></div>
+                        
+                        <button type="submit" id="trialBtn" class="btn btn-success" style="width: 100%; justify-content: center; padding: 0.8rem;">Activate Trial Now</button>
+                    </form>
+                </div>
+            </div>
+
         </main>
     </div>
 
@@ -1001,7 +1048,7 @@
             const oldId = document.getElementById('oldId').value.trim();
             const newId = document.getElementById('newId').value.trim();
             const statusMessage = document.getElementById('statusMessage');
-            const loading = document.querySelector('.loading-spinner');
+            const loading = document.querySelector('#transferForm .loading-spinner');
             const transferBtn = document.getElementById('transferBtn');
 
             statusMessage.style.display = 'none';
@@ -1034,6 +1081,55 @@
                 loading.style.display = 'none';
                 statusMessage.style.display = 'block';
                 transferBtn.disabled = false;
+            }
+        });
+
+        document.getElementById('trialForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const feedioId = document.getElementById('trialId').value.trim();
+            const phone = document.getElementById('trialPhone').value.trim();
+            const email = document.getElementById('trialEmail').value.trim();
+            
+            const statusMessage = document.getElementById('trialStatus');
+            const loading = document.getElementById('trialLoading');
+            const trialBtn = document.getElementById('trialBtn');
+
+            statusMessage.style.display = 'none';
+            statusMessage.className = 'status-msg';
+            statusMessage.textContent = '';
+            
+            loading.style.display = 'block';
+            trialBtn.disabled = true;
+
+            try {
+                const res = await fetch(API_URL, {
+                    method: "POST",
+                    body: JSON.stringify({ 
+                        action: "registerTrial",
+                        feedioId: feedioId,
+                        phone: phone,
+                        email: email
+                    })
+                });
+
+                const json = await res.json();
+                
+                if (!json.success) {
+                    statusMessage.className = 'status-msg status-error';
+                    statusMessage.textContent = json.message;
+                } else {
+                    statusMessage.className = 'status-msg status-success';
+                    statusMessage.textContent = json.message;
+                    document.getElementById('trialForm').reset();
+                }
+            } catch (error) {
+                statusMessage.className = 'status-msg status-error';
+                statusMessage.textContent = "Terjadi kesalahan koneksi. Silakan coba lagi.";
+            } finally {
+                loading.style.display = 'none';
+                statusMessage.style.display = 'block';
+                trialBtn.disabled = false;
             }
         });
     </script>
