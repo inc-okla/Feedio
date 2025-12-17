@@ -305,7 +305,7 @@
             background-color: #4b5563;
             cursor: not-allowed;
             transform: none;
-            opacity: 0.7;
+            opacity: 0.5;
         }
 
         .btn-primary { background-color: var(--accent-color); color: white; }
@@ -977,7 +977,7 @@
                     <form id="trialForm">
                         <div class="form-group">
                             <label for="trialId" class="form-label">Machine ID (Dari Aplikasi Feedio)</label>
-                            <input type="text" id="trialId" name="trialId" class="form-input" placeholder="Contoh: 12345-ABCDE-67890" required>
+                            <input type="text" id="trialId" name="trialId" class="form-input" placeholder="(Contoh: 12345-ABCDE-67890)" required>
                         </div>
                         
                         <div class="form-group">
@@ -994,7 +994,7 @@
                         
                         <div id="trialStatus" class="status-msg"></div>
                         
-                        <button type="submit" id="trialBtn" class="btn btn-success" style="width: 100%; justify-content: center; padding: 0.8rem;">Activate Trial Now</button>
+                        <button type="submit" id="trialBtn" class="btn btn-success" disabled style="width: 100%; justify-content: center; padding: 0.8rem; cursor: not-allowed; opacity: 0.5;">Activate Trial Now</button>
                     </form>
                 </div>
             </div>
@@ -1084,6 +1084,21 @@
             }
         });
 
+        const trialIdInput = document.getElementById('trialId');
+        const trialBtn = document.getElementById('trialBtn');
+
+        trialIdInput.addEventListener('input', function() {
+            if (this.value.trim().length >= 30) {
+                trialBtn.disabled = false;
+                trialBtn.style.opacity = '1';
+                trialBtn.style.cursor = 'pointer';
+            } else {
+                trialBtn.disabled = true;
+                trialBtn.style.opacity = '0.5';
+                trialBtn.style.cursor = 'not-allowed';
+            }
+        });
+
         document.getElementById('trialForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -1091,10 +1106,13 @@
             const phone = document.getElementById('trialPhone').value.trim();
             const email = document.getElementById('trialEmail').value.trim();
             
+            if (feedioId.length < 30) {
+                return; 
+            }
+
             const statusMessage = document.getElementById('trialStatus');
             const loading = document.getElementById('trialLoading');
-            const trialBtn = document.getElementById('trialBtn');
-
+            
             statusMessage.style.display = 'none';
             statusMessage.className = 'status-msg';
             statusMessage.textContent = '';
@@ -1122,6 +1140,8 @@
                     statusMessage.className = 'status-msg status-success';
                     statusMessage.textContent = json.message;
                     document.getElementById('trialForm').reset();
+                    trialBtn.disabled = true;
+                    trialBtn.style.opacity = '0.5';
                 }
             } catch (error) {
                 statusMessage.className = 'status-msg status-error';
@@ -1129,7 +1149,9 @@
             } finally {
                 loading.style.display = 'none';
                 statusMessage.style.display = 'block';
-                trialBtn.disabled = false;
+                if (statusMessage.classList.contains('status-error')) {
+                    trialBtn.disabled = false;
+                }
             }
         });
     </script>
