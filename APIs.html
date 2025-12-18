@@ -90,11 +90,11 @@
         }
 
         .download-container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
         .download-card {
@@ -106,6 +106,9 @@
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .download-card:hover {
@@ -132,7 +135,7 @@
         }
 
         .download-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 10px;
         }
 
@@ -152,6 +155,7 @@
             font-size: 0.8rem;
             font-weight: 700;
             margin-bottom: 25px;
+            align-self: center;
         }
 
         .btn {
@@ -376,18 +380,39 @@
                         <path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/>
                     </svg>
                 </div>
-                <h3>Browser Extension</h3>
+                <h3>Feedio APIs Ext</h3>
                 <span class="platform-name">Chrome Web Store</span>
                 <span class="version-badge">Selalu Update</span>
 
                 <a href="https://chromewebstore.google.com/detail/dkpcbhgnpemnepkklnjleiblojanklml?utm_source=item-share-cb" target="_blank" class="btn btn-outline">
                     <svg style="width:18px;height:18px;fill:var(--primary-color);margin-right:5px;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                    Install Extension
+                    Web Store
                 </a>
 
                 <p class="desc-text">
-                    Untuk <strong>Firefly, Google Image, Flow Ultra,</strong>.
+                    Untuk <strong>Firefly, Google Image, & Umum</strong>.
                     Solusi ringan berbasis web browser.
+                </p>
+            </div>
+
+            <div class="download-card">
+                <div class="icon-wrapper">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                </div>
+                <h3>Flow Ultra Ext</h3>
+                <span class="platform-name">Manual Install (.RAR)</span>
+                <span class="version-badge">Versi 1.0.8</span>
+
+                <a href="https://github.com/inc-okla/Feedio-APIs/releases/download/1.0.8/Feedio.Flow.rar" class="btn btn-primary">
+                    <svg style="width:18px;height:18px;fill:white;margin-right:5px;" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Download .RAR
+                </a>
+
+                <p class="desc-text">
+                    Khusus untuk <strong>Flow Ultra</strong>.
+                    Download file, extract, dan load manual di browser.
                 </p>
             </div>
         </div>
@@ -421,8 +446,8 @@
                         <ul style="list-style-position: inside; color: #555; line-height: 1.8;">
                             <li>Generate API Key Topaz (Versi Desktop)</li>
                             <li>Generate API Firefly & Google Models (Extension)</li>
+                            <li>Support Flow Ultra (Manual Extension)</li>
                             <li>Penghubung (Bridge) ke Feedio Bot</li>
-                            <li>Otomatisasi pembaruan token</li>
                         </ul>
                     </div>
                 </div>
@@ -463,13 +488,13 @@
             <div class="video-grid">
                 <div>
                     <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_INSTALLER" title="Demo Installer" frameborder="0" allowfullscreen></iframe>
+                        <iframe src=" title="Demo Installer" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="video-title">Panduan Feedio APIs Desktop (Windows)</div>
                 </div>
                 <div>
                     <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_EXTENSION" title="Demo Extension" frameborder="0" allowfullscreen></iframe>
+                        <iframe src=" title="Demo Extension" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="video-title">Panduan Browser Extension</div>
                 </div>
