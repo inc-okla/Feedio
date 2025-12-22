@@ -518,6 +518,7 @@
                     <li><button onclick="switchTab('google-image', this)" class="nav-btn">Google Image Labs</button></li>
                     <li><button onclick="switchTab('remove-background', this)" class="nav-btn">Remove Background & Upscale</button></li>
                     <li><button onclick="switchTab('topaz-upscaler', this)" class="nav-btn">Topaz Upscaler</button></li>
+                    <li><button onclick="switchTab('extension-feedio', this)" class="nav-btn">Extension Feedio</button></li>
                     <li><button onclick="switchTab('license', this)" class="nav-btn">License & Copyright</button></li>
                     <li><button onclick="switchTab('trial-mode', this)" class="nav-btn">Trial Mode</button></li>
                 </ul>
@@ -901,6 +902,70 @@
                 </div>
             </div>
 
+            <div id="extension-feedio" class="content-section">
+                <h1>Extension Feedio</h1>
+                
+                <div id="extension-login-gate">
+                    <div class="license-card">
+                        <h3 style="margin-top: 0; text-align: center;">Akses Tutorial Eksklusif</h3>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Silakan masukkan Machine ID Feedio Anda untuk memvalidasi status langganan aktif.</p>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Machine ID Feedio</label>
+                            <input type="text" id="accessMachineId" class="form-input" placeholder="Masukkan ID Machine Anda" required>
+                        </div>
+                        
+                        <div id="accessLoading" class="loading-spinner"></div>
+                        <div id="accessStatus" class="status-msg"></div>
+                        
+                        <button onclick="checkTutorialAccess()" id="accessBtn" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">Buka Tutorial</button>
+                    </div>
+                </div>
+
+                <div id="extension-protected-content" style="display: none;">
+                    <p>
+                        Selamat datang! Anda kini memiliki akses ke tutorial **Extension Feedio Panel**. Berbeda dengan versi penarik token, ekstensi ini adalah panel kontrol bot yang berjalan langsung di browser Anda.
+                    </p>
+
+                    <div class="btn-group">
+                        <a href="https://feedio.pro/PanelExtension.zip" class="btn btn-success">⬇️ Download Extension Feedio Panel Disini</a>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>PENTING:</strong> Ekstensi ini berjalan sebagai "native browser tool". Anda tidak perlu menyalin token API secara manual karena bot beroperasi langsung pada interface panel ekstensi.
+                    </div>
+
+                    <h2>Panduan Pemasangan & Aktivasi</h2>
+                    <p>Ikuti langkah-langkah di bawah ini untuk memasang Extension Feedio ke browser Anda:</p>
+                    
+                    <h3>1. Persiapan File</h3>
+                    <ul>
+                        <li>Klik tombol <strong>Download</strong> di atas untuk mendapatkan file <code>PanelExtension.zip</code>.</li>
+                        <li>Klik kanan pada file tersebut dan pilih <strong>Extract All</strong> atau <strong>Extract Here</strong>.</li>
+                    </ul>
+
+                    <h3>2. Masuk ke Menu Ekstensi Chrome</h3>
+                    <ul>
+                        <li>Buka Google Chrome, ketik <code>chrome://extensions/</code> pada kolom URL.</li>
+                        <li>Cari saklar <strong>Developer mode</strong> di pojok kanan atas dan geser ke posisi <strong>ON</strong>.</li>
+                    </ul>
+
+                    <h3>3. Memuat Ekstensi (Load Unpacked)</h3>
+                    <ul>
+                        <li>Klik tombol <strong>Load unpacked</strong> di pojok kiri atas.</li>
+                        <li>Pilih <strong>Folder hasil ekstraksi</strong> tadi dan klik <strong>Select Folder</strong>.</li>
+                    </ul>
+
+                    <div class="success-box" style="background-color: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--success-color); padding: 1rem; margin: 1rem 0; border-radius: 0 4px 4px 0;">
+                        <strong>BERHASIL:</strong> Ekstensi Feedio Panel kini telah terpasang dan siap digunakan.
+                    </div>
+
+                    <div class="placeholder-box">
+                        <span class="placeholder-text">[FOTO: Tutorial Visual Pemasangan Load Unpacked]</span>
+                    </div>
+                </div>
+            </div>
+
             <div id="license" class="content-section">
                 <h1>License & Copyright</h1>
                 <p>
@@ -1003,6 +1068,8 @@
     </div>
 
     <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbw7qgvPNeLw7B3HBcmTMN6UmInfgdn9ETt4McnT6p8U1muXtLg_YjfHAoOQCsM_4vlY/exec";
+
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.querySelector('.sidebar-overlay');
@@ -1040,32 +1107,70 @@
             }
         }
 
-        const API_URL = "https://script.google.com/macros/s/AKfycbw7qgvPNeLw7B3HBcmTMN6UmInfgdn9ETt4McnT6p8U1muXtLg_YjfHAoOQCsM_4vlY/exec";
+        async function checkTutorialAccess() {
+            const machineId = document.getElementById('accessMachineId').value.trim();
+            const loading = document.getElementById('accessLoading');
+            const status = document.getElementById('accessStatus');
+            const loginGate = document.getElementById('extension-login-gate');
+            const protectedContent = document.getElementById('extension-protected-content');
+            const btn = document.getElementById('accessBtn');
+
+            if (!machineId) {
+                status.className = 'status-msg status-error';
+                status.textContent = 'Harap masukkan Machine ID Anda.';
+                status.style.display = 'block';
+                return;
+            }
+
+            status.style.display = 'none';
+            loading.style.display = 'block';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(API_URL, {
+                    method: "POST",
+                    body: JSON.stringify({ 
+                        action: "checkAccess", 
+                        machineId: machineId 
+                    })
+                });
+
+                const json = await res.json();
+                
+                if (json.success) {
+                    loginGate.style.display = 'none';
+                    protectedContent.style.display = 'block';
+                } else {
+                    status.className = 'status-msg status-error';
+                    status.textContent = json.message || "Akses Ditolak. Pastikan ID Anda aktif.";
+                    status.style.display = 'block';
+                }
+            } catch (error) {
+                status.className = 'status-msg status-error';
+                status.textContent = "Terjadi kesalahan koneksi.";
+                status.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+                btn.disabled = false;
+            }
+        }
 
         document.getElementById('transferForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
             const oldId = document.getElementById('oldId').value.trim();
             const newId = document.getElementById('newId').value.trim();
             const statusMessage = document.getElementById('statusMessage');
             const loading = document.querySelector('#transferForm .loading-spinner');
             const transferBtn = document.getElementById('transferBtn');
-
             statusMessage.style.display = 'none';
-            statusMessage.className = 'status-msg';
-            statusMessage.textContent = '';
-            
             loading.style.display = 'block';
             transferBtn.disabled = true;
-
             try {
                 const res = await fetch(API_URL, {
                     method: "POST",
                     body: JSON.stringify({ oldId, newId })
                 });
-
                 const json = await res.json();
-                
                 if (!json.success) {
                     statusMessage.className = 'status-msg status-error';
                     statusMessage.textContent = json.message;
@@ -1076,7 +1181,7 @@
                 }
             } catch (error) {
                 statusMessage.className = 'status-msg status-error';
-                statusMessage.textContent = "Terjadi kesalahan koneksi. Silakan coba lagi.";
+                statusMessage.textContent = "Terjadi kesalahan koneksi.";
             } finally {
                 loading.style.display = 'none';
                 statusMessage.style.display = 'block';
@@ -1086,7 +1191,6 @@
 
         const trialIdInput = document.getElementById('trialId');
         const trialBtn = document.getElementById('trialBtn');
-
         trialIdInput.addEventListener('input', function() {
             if (this.value.trim().length >= 30) {
                 trialBtn.disabled = false;
@@ -1101,38 +1205,20 @@
 
         document.getElementById('trialForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
             const feedioId = document.getElementById('trialId').value.trim();
             const phone = document.getElementById('trialPhone').value.trim();
             const email = document.getElementById('trialEmail').value.trim();
-            
-            if (feedioId.length < 30) {
-                return; 
-            }
-
             const statusMessage = document.getElementById('trialStatus');
             const loading = document.getElementById('trialLoading');
-            
             statusMessage.style.display = 'none';
-            statusMessage.className = 'status-msg';
-            statusMessage.textContent = '';
-            
             loading.style.display = 'block';
             trialBtn.disabled = true;
-
             try {
                 const res = await fetch(API_URL, {
                     method: "POST",
-                    body: JSON.stringify({ 
-                        action: "registerTrial",
-                        feedioId: feedioId,
-                        phone: phone,
-                        email: email
-                    })
+                    body: JSON.stringify({ action: "registerTrial", feedioId, phone, email })
                 });
-
                 const json = await res.json();
-                
                 if (!json.success) {
                     statusMessage.className = 'status-msg status-error';
                     statusMessage.textContent = json.message;
@@ -1140,18 +1226,14 @@
                     statusMessage.className = 'status-msg status-success';
                     statusMessage.textContent = json.message;
                     document.getElementById('trialForm').reset();
-                    trialBtn.disabled = true;
-                    trialBtn.style.opacity = '0.5';
                 }
             } catch (error) {
                 statusMessage.className = 'status-msg status-error';
-                statusMessage.textContent = "Terjadi kesalahan koneksi. Silakan coba lagi.";
+                statusMessage.textContent = "Terjadi kesalahan koneksi.";
             } finally {
                 loading.style.display = 'none';
                 statusMessage.style.display = 'block';
-                if (statusMessage.classList.contains('status-error')) {
-                    trialBtn.disabled = false;
-                }
+                if (statusMessage.classList.contains('status-error')) trialBtn.disabled = false;
             }
         });
     </script>
