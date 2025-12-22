@@ -486,6 +486,25 @@
                 flex: 1;
             }
 
+            .video-box {
+                position: relative;
+                width: 100%;
+                aspect-ratio: 16 / 9;
+                background-color: #000;
+                border-radius: 12px;
+                overflow: hidden;
+                margin: 1.5rem 0;
+                border: 1px solid var(--border-color);
+            }
+            
+            .video-box iframe {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+
             h1 {
                 font-size: 1.8rem;
             }
@@ -978,8 +997,14 @@
                         <strong>BERHASIL:</strong> Akun Gemini Enterprise sudah didapatkan. kamu bisa akses Veo3 secara gratis tanpa watermark.
                     </div>
 
-                    <div class="placeholder-box">
-                        <span class="placeholder-text">[Video: Tutorial Visual Comming Soon]</span>
+                    <div class="video-box">
+                        <iframe
+                            src="https://www.youtube.com/embed/SEM2H8YdtVo"
+                            title="Tutorial Video"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
                     </div>
 
                     <h3>2. Pengoperasian Workflow pada Extension</h3>
