@@ -544,6 +544,7 @@
                     <li><button onclick="switchTab('remove-background', this)" class="nav-btn">Remove Background & Upscale</button></li>
                     <li><button onclick="switchTab('topaz-upscaler', this)" class="nav-btn">Topaz Upscaler</button></li>
                     <li><button onclick="switchTab('extension-feedio', this)" class="nav-btn">Veo Free</button></li>
+                    <li><button onclick="switchTab('feedio-assistant', this)" class="nav-btn">Feedio Assisten</button></li>
                     <li><button onclick="switchTab('license', this)" class="nav-btn">License & Copyright</button></li>
                     <li><button onclick="switchTab('trial-mode', this)" class="nav-btn">Trial Mode</button></li>
                 </ul>
@@ -551,6 +552,7 @@
         </aside>
 
         <main>
+            <!-- Sections existing codes... -->
             <div id="flow-ultra" class="content-section active-section">
                 <h1>Flow Ultra</h1>
                 <p>
@@ -765,21 +767,6 @@
                         <li><strong>Ukuran File:</strong> Maksimal ukuran file yang dapat diproses adalah <strong>23 MB</strong> per gambar.</li>
                         <li><strong>Urutan Proses:</strong> Sangat disarankan untuk melakukan <em>Upscale</em> terlebih dahulu, baru kemudian melakukan <em>Remove Background</em> untuk detail yang lebih baik.</li>
                     </ul>
-                </div>
-
-                <div style="display: flex; gap: 20px; flex-wrap: wrap; margin: 2rem 0;">
-                    <div style="flex: 1; min-width: 250px; text-align: center;">
-                        <p style="margin-bottom: 0.5rem; color: var(--text-secondary); font-weight: 600;">BEFORE (Asli)</p>
-                        <div class="placeholder-box" style="margin: 0; min-height: 200px;">
-                            <span class="placeholder-text">[FOTO BEFORE]</span>
-                        </div>
-                    </div>
-                    <div style="flex: 1; min-width: 250px; text-align: center;">
-                        <p style="margin-bottom: 0.5rem; color: var(--accent-color); font-weight: 600;">AFTER (Result)</p>
-                        <div class="placeholder-box" style="margin: 0; min-height: 200px; border-color: var(--accent-color);">
-                            <span class="placeholder-text">[FOTO AFTER]</span>
-                        </div>
-                    </div>
                 </div>
 
                 <h2>Mekanisme API & Akses Unlimited</h2>
@@ -1006,7 +993,7 @@
                     <div class="video-full-wrapper">
                         <div class="video-box">
                             <iframe
-                                src="https://www.youtube.com/embed/SEM2H8YdtVo"
+                                src=""
                                 title="Tutorial Video"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen>
@@ -1024,9 +1011,61 @@
                     <div class="warning-box">
                         <strong>PERHATIAN:</strong> Meskipun gratis, layanan ini akan berubah seiring dengan peraturan dari <strong>Google.</strong> dan Extention tidak ada update secara berkala.
                     </div>
-                                       
                 </div>
             </div>
+
+            <!-- BAGIAN TERBARU: FEEDIO ASSISTEN -->
+            <div id="feedio-assistant" class="content-section">
+                <h1>Feedio Assisten</h1>
+                <p>
+                    <strong>Feedio Assisten</strong> adalah fitur Prompt Generator cerdas yang dirancang khusus untuk membantu pengguna menciptakan prompt visual dengan detail yang sangat kaya, artistik, dan presisi. 
+                </p>
+                <p>
+                    Fitur ini ditenagai oleh model AI berperforma tinggi dari <strong>Groq Cloud</strong>, yang memungkinkan pembuatan instruksi teks (prompt) yang kompleks hanya dalam hitungan detik secara gratis.
+                </p>
+
+                <div class="btn-group">
+                    <a href="https://console.groq.com/keys" target="_blank" class="btn btn-primary">🔑 Dapatkan API Key Groq (FREE)</a>
+                </div>
+
+                <h2>Fitur Utama & Keunggulan</h2>
+                <ul>
+                    <li><strong>Prompt Generator Presisi:</strong> Mengubah ide sederhana Anda menjadi kalimat teknis AI yang lengkap dengan pencahayaan, gaya kamera, dan detail atmosferik.</li>
+                    <li><strong>Template Kategori Pintar:</strong> Memilih gaya visual favorit secara instan:
+                        <ul>
+                            <li><code>Realistic</code>: Foto nyata seperti jepretan kamera profesional.</li>
+                            <li><code>Cartoon</code>: Gaya animasi 3D, anime, atau kartun klasik.</li>
+                            <li><code>PNG/Logo</code>: Fokus pada objek terisolasi dengan latar bersih.</li>
+                            <li><code>Mockup</code>: Desain produk di lingkungan nyata (branding).</li>
+                            <li><code>Video</code>: Deskripsi gerakan kamera dan dinamika scene untuk video AI.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Export Langsung (One-Click):</strong> Prompt yang telah dihasilkan dapat langsung di-export atau dikirim ke kolom input prompt utama di dalam aplikasi Feedio tanpa perlu Copy-Paste manual.</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>PENGEMBANGAN BERKELANJUTAN:</strong> Modul Feedio Assisten akan terus diperbarui dengan penambahan template gaya baru, dukungan model AI terbaru, dan integrasi bahasa yang lebih luas.
+                </div>
+
+                <div class="placeholder-box">
+                    <span class="placeholder-text">[FOTO: Interface Feedio Assisten dengan pilihan template gaya]</span>
+                </div>
+
+                <h2>Cara Menggunakan</h2>
+                <ol>
+                    <li>Buka menu <strong>Feedio Assisten</strong> di panel navigasi bot.</li>
+                    <li>Hubungkan API Key Groq Anda (Bisa didapatkan melalui tombol link di atas).</li>
+                    <li>Pilih <strong>Template</strong> gaya yang diinginkan (Contoh: Realistic).</li>
+                    <li>Ketikkan ide singkat atau subjek gambar pada kolom input.</li>
+                    <li>Klik <strong>Generate Prompt</strong>.</li>
+                    <li>Setelah hasil muncul, klik tombol <strong>Export to Input</strong> untuk mulai melakukan proses generate gambar/video di modul utama Feedio.</li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>TIPS:</strong> Gunakan API Key Groq yang berbeda jika Anda merasa kecepatan respon melambat atau mencapai limit harian gratis dari Groq.
+                </div>
+            </div>
+            <!-- SELESAI BAGIAN FEEDIO ASSISTEN -->
 
             <div id="license" class="content-section">
                 <h1>License & Copyright</h1>
