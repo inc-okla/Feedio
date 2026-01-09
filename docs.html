@@ -1328,19 +1328,20 @@
             sections.forEach(section => {
                 section.classList.remove('active-section');
             });
-
+        
             const buttons = document.querySelectorAll('.nav-btn');
             buttons.forEach(btn => {
                 btn.classList.remove('active');
             });
-
+        
             const targetSection = document.getElementById(sectionId);
             if (targetSection) {
                 targetSection.classList.add('active-section');
+                history.replaceState(null, "", `#${sectionId}`); // 🔗 PENTING
             }
-
+        
             button.classList.add('active');
-
+        
             if (window.innerWidth <= 768) {
                 closeSidebar();
             }
