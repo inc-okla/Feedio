@@ -1475,6 +1475,35 @@
                 if (statusMessage.classList.contains('status-error')) trialBtn.disabled = false;
             }
         });
+                                
+        window.addEventListener("load", () => {
+            const hash = window.location.hash.replace("#", "");
+            if (!hash) return;
+    
+            const targetSection = document.getElementById(hash);
+            const navButtons = document.querySelectorAll(".nav-btn");
+    
+            if (targetSection) {
+                // Hide all sections
+                document.querySelectorAll(".content-section").forEach(sec => {
+                    sec.classList.remove("active-section");
+                });
+    
+                // Remove active from all buttons
+                navButtons.forEach(btn => btn.classList.remove("active"));
+    
+                // Show target
+                targetSection.classList.add("active-section");
+    
+                // Activate matching nav button
+                navButtons.forEach(btn => {
+                    if (btn.getAttribute("onclick")?.includes(hash)) {
+                        btn.classList.add("active");
+                    }
+                });
+            }
+        });    
+        
     </script>
 </body>
 </html>
