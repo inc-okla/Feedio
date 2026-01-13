@@ -704,82 +704,84 @@
                     <div class="error-item"><span class="error-code">500 - Internal Server Error</span><span class="error-desc">Gangguan server penyedia.</span></div>
                     <div class="error-item"><span class="error-code">503 - Service Unavailable</span><span class="error-desc">Layanan sedang sibuk/maintenance.</span></div>
                 </div>
+
                 
-                <h2>🔥 Exclusive Firefly Pro Free (Member)</h2>
+                <div id="firefly-trial">
+                    <h1>Adobe Firefly Free Trial (Exclusive)</h1>
                 
-                <div class="warning-box">
-                    <strong>AKSES KHUSUS – WAJIB MACHINE ID</strong>
-                    <p style="margin-top:0.5rem;">
-                        Metode ini bersifat <strong>EXCLUSIVE</strong> dan hanya dapat dibuka menggunakan 
-                        <strong>ID Machine Feedio</strong>, yang masih Aktif<strong>Untuk lisensi Free silahkan Upgrade Feedio terlebih dahulu</strong>.
-                    </p>
-                </div>
+                    <!-- LOGIN GATE -->
+                    <div id="firefly-login-gate">
+                        <div class="license-card">
+                            <h3 style="margin-top:0; text-align:center;">Unlock Tutorial Firefly Free Trial</h3>
+                            <p style="text-align:center; font-size:0.9rem; color:var(--text-secondary);">
+                                Masukkan <strong>ID Machine Feedio</strong> untuk membuka tutorial.
+                            </p>
                 
-                <p>
-                    Jika kamu mengalami <strong>error / akses terkunci</strong> pada model Firefly,  
-                    kamu dapat mencoba metode <strong>Firefly Pro Free (Trial)</strong> resmi dari Adobe.
-                </p>
+                            <div class="form-group">
+                                <label class="form-label">ID Machine Feedio</label>
+                                <input type="text" id="fireflyMachineId" class="form-input" placeholder="Masukkan Machine ID Anda">
+                            </div>
                 
-                <h3>🔗 Klik Salah Satu Link Trial Resmi</h3>
-                <div class="btn-group">
-                    <a href="https://www.adobe.com/creativecloud/business/teams/free-trial-download.html" target="_blank" class="btn btn-outline">
-                        🔗 Link Trial 1 – Adobe Business Teams
-                    </a>
-                    <a href="https://commerce.adobe.com/store/commitment?cli=creative&co=US&lang=en&items%5B0%5D%5Bid%5D=85E283FAC074B6FAB117811DAD30FD6B" target="_blank" class="btn btn-outline">
-                        🔗 Link Trial 2 – Adobe Commitment
-                    </a>
-                </div>
+                            <div id="fireflyLoading" class="loading-spinner"></div>
+                            <div id="fireflyStatus" class="status-msg"></div>
                 
-                <h3>📝 Cara Claim Free Trial Firefly Pro</h3>
-                <ol>
-                    <li>Klik salah satu dari link trial di atas.</li>
-                    <li>Pilih <strong>Start Free Trial / Free Trial Download</strong>.</li>
-                    <li>Login atau buat akun Adobe baru jika belum punya.</li>
-                    <li>Isi data diri dengan lengkap:
-                        <ul>
-                            <li>Nama Lengkap</li>
-                            <li>Nomor Telepon Aktif</li>
-                            <li>Alamat Lengkap</li>
-                            <li>Metode Pembayaran (Disarankan Kartu / Virtual Card)</li>
-                        </ul>
-                    </li>
-                </ol>
+                            <button onclick="unlockFireflyTrial()" class="btn btn-primary" style="width:100%;">
+                                Unlock Tutorial
+                            </button>
+                        </div>
+                    </div>
                 
-                <div class="info-box">
-                    <strong>NOTE PENTING SEBELUM CLAIM TRIAL</strong>
-                    <ul style="margin-top:0.5rem;">
-                        <li>Pastikan akun Adobe <strong>BELUM PERNAH</strong> membeli Firefly Pro.</li>
-                        <li>Pastikan akun tersebut <strong>BELUM PERNAH</strong> menggunakan trial sebelumnya.</li>
-                        <li>Jika sudah pernah, <strong>GUNAKAN AKUN BARU</strong> untuk mendaftar trial lagi.</li>
-                    </ul>
-                </div>
+                    <!-- PROTECTED CONTENT -->
+                    <div id="firefly-protected" style="display:none;">
                 
-                <div class="warning-box">
-                    <strong>⚠️ PERHATIAN PEMBAYARAN</strong>
-                    <ul style="margin-top:0.5rem;">
-                        <li>Rekening / kartu harus memiliki saldo aktif minimal <strong>$1</strong> untuk verifikasi.</li>
-                        <li>Saldo ini hanya untuk <strong>verifikasi identitas</strong>, bukan biaya langganan.</li>
-                        <li>Pastikan kamu <strong>MENGCANCEL TRIAL SEBELUM BERAKHIR</strong> kalau tidak ingin dikenakan biaya.</li>
-                    </ul>
-                </div>
+                        <h2>🚀 Tutorial Daftar Adobe Firefly Free Trial</h2>
                 
-                <h3>🔐 Unlock Exclusive Tutorial (Machine ID Required)</h3>
-                <p>
-                    Untuk membuka <strong>Exclusive Firefly Pro Free Tutorial</strong>,  
-                    gunakan sistem unlock dengan <strong>ID Machine Feedio</strong>.
-                </p>
+                        <h3>🔗 Langkah 1: Buka Link Trial</h3>
+                        <div class="btn-group">
+                            <a href="https://www.adobe.com/creativecloud/business/teams/free-trial-download.html" target="_blank" class="btn btn-outline">
+                                🔗 Trial Link 1 (Business Teams)
+                            </a>
+                            <a href="https://commerce.adobe.com/store/commitment?cli=creative&co=US&lang=en&items%5B0%5D%5Bid%5D=85E283FAC074B6FAB117811DAD30FD6B" target="_blank" class="btn btn-outline">
+                                🔗 Trial Link 2 (Commitment)
+                            </a>
+                        </div>
                 
-                <div class="info-box">
-                    Sistem ini identik dengan <strong>Veo Free Unlock</strong>:
-                    <ul style="margin-top:0.5rem;">
-                        <li>1 Machine ID = 1 Akses Trial</li>
-                        <li>Tidak bisa dipakai ulang</li>
-                        <li>Akses bersifat personal</li>
-                    </ul>
+                        <h3>📝 Langkah 2: Claim Free Trial</h3>
+                        <ol>
+                            <li>Klik salah satu link trial di atas.</li>
+                            <li>Pilih <strong>Start Free Trial</strong>.</li>
+                            <li>Login atau daftar akun Adobe baru.</li>
+                            <li>Isi data:
+                                <ul>
+                                    <li>Nama Lengkap</li>
+                                    <li>Nomor Telepon</li>
+                                    <li>Alamat</li>
+                                    <li>Metode Pembayaran</li>
+                                </ul>
+                            </li>
+                        </ol>
+                
+                        <div class="warning-box">
+                            <strong>WAJIB DIBACA</strong>
+                            <ul style="margin-top:0.5rem;">
+                                <li>Akun Adobe <strong>HARUS BARU</strong></li>
+                                <li>Belum pernah trial / beli Firefly</li>
+                                <li>Saldo kartu minimal <strong>$1</strong> (verifikasi)</li>
+                                <li><strong>CANCEL SEBELUM TRIAL HABIS</strong> supaya tidak kena charge</li>
+                            </ul>
+                        </div>
+                
+                        <div class="success-box" style="background:rgba(16,185,129,.1);border-left:4px solid var(--success-color);padding:1rem;">
+                            ✅ Setelah trial aktif, Firefly Pro bisa langsung dipakai di Feedio.
+                        </div>
+                
+                    </div>
                 </div>
 
                 
             </div>
+
+
 
             <div id="google-image" class="content-section">
                 <h1>Google Image Labs (Whisk & ImageFX)</h1>
@@ -1469,7 +1471,53 @@
                 closeSidebar();
             }
         }
+        
+        async function unlockFireflyTrial() {
+            const machineId = document.getElementById('fireflyMachineId').value.trim();
+            const loading = document.getElementById('fireflyLoading');
+            const status = document.getElementById('fireflyStatus');
+            const gate = document.getElementById('firefly-login-gate');
+            const content = document.getElementById('firefly-protected');
+        
+            if (!machineId) {
+                status.className = 'status-msg status-error';
+                status.textContent = 'Machine ID wajib diisi.';
+                status.style.display = 'block';
+                return;
+            }
+        
+            status.style.display = 'none';
+            loading.style.display = 'block';
+        
+            try {
+                const res = await fetch(API_URL, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        action: "checkAccess",
+                        machineId
+                    })
+                });
+        
+                const json = await res.json();
+        
+                if (json.success) {
+                    gate.style.display = 'none';
+                    content.style.display = 'block';
+                } else {
+                    status.className = 'status-msg status-error';
+                    status.textContent = 'Akses ditolak. Machine ID tidak valid.';
+                    status.style.display = 'block';
+                }
+            } catch {
+                status.className = 'status-msg status-error';
+                status.textContent = 'Koneksi gagal.';
+                status.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
 
+        
         async function checkTutorialAccess() {
             const machineId = document.getElementById('accessMachineId').value.trim();
             const loading = document.getElementById('accessLoading');
@@ -1626,6 +1674,7 @@
                     }
                 });
             }
+            
         });    
         
     </script>
